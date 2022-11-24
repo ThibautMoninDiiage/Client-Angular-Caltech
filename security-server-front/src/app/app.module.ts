@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
