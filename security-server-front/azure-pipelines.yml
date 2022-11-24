@@ -23,6 +23,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)/security-server-front/dist'
+    targetPath: '$(Build.SourcesDirectory)/dist'
     artifact: 'dist'
     publishLocation: 'pipeline'
