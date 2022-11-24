@@ -1,0 +1,26 @@
+.container {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-header-image{
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.details-card{
+  width: 25%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-bottom: 1vh;
+}
+

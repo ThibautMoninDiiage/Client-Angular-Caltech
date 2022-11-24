@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  &_left{
+    justify-content:left;
+    padding-top: 200px;
+    padding-left: 5%;
+
+  }
+  &_center{
+    justify-content: center;
+    padding-top: 15%;
+    padding-left: 10%;
+
+  }
+}
+
+.field{
+  padding-top: 10px;
+}
+
+.card_content{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.title_center {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.2);
+}

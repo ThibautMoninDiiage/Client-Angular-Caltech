@@ -8,12 +8,17 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MaterialExampleModule} from '../material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { LottieModule } from 'ngx-lottie';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    UserDetailsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,9 +28,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatNativeDateModule,
     MaterialExampleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function playerFactory() {
+  return import('lottie-web');
+}
