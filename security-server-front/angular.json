@@ -69,7 +69,8 @@
               "browserTarget": "securityServerFront:build:production"
             },
             "development": {
-              "browserTarget": "securityServerFront:build:development"
+              "browserTarget": "securityServerFront:build:development",
+              "proxyConfig": "./proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

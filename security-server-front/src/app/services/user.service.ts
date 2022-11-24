@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Role } from '../models/role.interface';
 import { User } from "../models/user.interface"
 
 @Injectable({
@@ -9,6 +10,7 @@ import { User } from "../models/user.interface"
 
 export class UserService {
 
+
   private readonly baseUrl = 'https://testfuncappgroupedeux.azurewebsites.net/api'
   constructor(private http: HttpClient) {}
 
@@ -16,5 +18,7 @@ export class UserService {
       return this.http.get<User>(`${this.baseUrl}/users/${userId}`);
    }
 
-
+   getRoles(): Observable<Role[]> { 
+    return this.http.get<Role[]>('https://testfuncappgroupedeux.azurewebsites.net/api/roles')
+  }
 }

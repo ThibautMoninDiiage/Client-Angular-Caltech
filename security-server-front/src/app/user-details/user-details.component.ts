@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Role } from '../models/role.interface';
 import { User } from '../models/user.interface';
 import { UserService } from '../services/user.service';
 
@@ -15,14 +17,17 @@ export class UserDetailsComponent implements OnInit {
     role : {name: "Regular"}
   }
   userhttp! : User;
+  roles$! : Observable<Role[]>; 
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.userService.getUserDetails(1).subscribe(result => {
-      this.userhttp = result;
-    })
+    // this.userService.getUserDetails(1).subscribe(result => {
+    //   this.userhttp = result;
+    // })
+
+    this.roles$ = this.userService.getRoles();
   }
 
 }
