@@ -16,6 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd security-server-front
     npm install -g @angular/cli
     npm install
     npm run build
@@ -23,6 +24,6 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)/dist'
+    targetPath: '$(Build.SourcesDirectory)/security-server-front/dist'
     artifact: 'dist'
     publishLocation: 'pipeline'
