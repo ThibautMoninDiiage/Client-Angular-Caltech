@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.avatar-image{
+  border-radius: 50%; 
+  width: 100px;
+  height : 75px;
+}
+
+.bottom-box{
+  display: flex;
+  padding: 2%;
+  
+}

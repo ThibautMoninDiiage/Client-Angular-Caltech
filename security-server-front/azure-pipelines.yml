@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- dev
+- features/init
 
 pool:
   vmImage: ubuntu-latest
@@ -16,6 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd security-server-front
     npm install -g @angular/cli
     npm install
     npm run build

@@ -1,0 +1,22 @@
+<div class="container">
+<mat-card class="details-card">
+  <mat-card-header>
+    
+    <img mat-card-avatar class="avatar-header-image" src="{{user.avatar}}"/>
+    <mat-card-title>{{user.username}}</mat-card-title>
+    <mat-card-subtitle>{{user.mail}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <mat-label>Rôle : {{user.role.name}}</mat-label>
+    <ng-container *ngIf="roles$ | async as roles; else loading">
+      <mat-label *ngFor="let role of roles" > {{role.name}} </mat-label>
+    </ng-container>
+    <ng-template #loading>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+  </mat-card-content>
+  <mat-card-actions class="card-content">
+    <button mat-raised-button color="warn" [routerLink]="'../admin-panel'">Change password</button>
+  </mat-card-actions>
+</mat-card>
+</div>
