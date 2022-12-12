@@ -1,8 +1,22 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon" aria-label="Menu icon-button">
       <mat-icon>menu</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="'../'" >
+        <mat-icon>weekend</mat-icon>
+        <span>Sign Out</span>
+      </button>
+      <button mat-menu-item [routerLink]="'admin-panel'">
+        <mat-icon>list_alt</mat-icon>
+        <span>User's List</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>font_download</mat-icon>
+        <span>All App</span>
+      </button>
+    </mat-menu>
     <span>Auth Server</span>
     <span class="flexExpand"></span>
     <button  mat-icon-button aria-label="user icon" [routerLink]="'user-details-component'" >

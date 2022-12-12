@@ -12,6 +12,7 @@ import { LottieModule } from 'ngx-lottie';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UserService } from './services/user.service';
     AppComponent,
     ToolbarComponent,
     UserDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,7 @@ import { UserService } from './services/user.service';
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
-  providers: [UserService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

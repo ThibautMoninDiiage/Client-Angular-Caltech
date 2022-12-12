@@ -16,10 +16,10 @@ export class UserDetailsComponent implements OnInit {
     avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",
     role : {name: "Regular"}
   }
-  userhttp! : User;
+  userhttp! : Observable<User[]>;
   roles$! : Observable<Role[]>; 
 
-  constructor(private userService: UserService) {
+  constructor(private _userService: UserService) {
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class UserDetailsComponent implements OnInit {
     //   this.userhttp = result;
     // })
 
-    this.roles$ = this.userService.getRoles();
+    this.roles$ = this._userService.getRoles();
   }
 
 }

@@ -19,6 +19,10 @@ export class UserService {
    }
 
    getRoles(): Observable<Role[]> { 
-    return this.http.get<Role[]>('https://testfuncappgroupedeux.azurewebsites.net/api/roles')
+    return this.http.get<Role[]>(`${this.baseUrl}/roles`);
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.baseUrl}/users`);
   }
 }
