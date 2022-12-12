@@ -1,26 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.interface';
+import Constants from '../utils/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  // Todo : Changer la variable locale en constante utilisable globalement
-  private _apiEndpoint: string = 'https://testfuncappgroupedeux.azurewebsites.net/api'
-
   constructor(private _http: HttpClient) { }
 
   signIn(user: User) {
-    return this._http.post(`${this._apiEndpoint}/signin`, user)
+    return this._http.post(`${Constants.baseUrl}/signin`, user)
     .subscribe((res: any) => {
       this.setToken(res.token)
     })
   }
 
   signUp(user: User) {
-    let api = `${this._apiEndpoint}/connexion`
+    let api = `${Constants.baseUrl}/connexion`
 
     return this._http.post(api, user)
   }
