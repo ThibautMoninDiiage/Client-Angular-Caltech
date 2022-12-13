@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './services/user.service';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ApplicationListComponent } from './application-list/application-list/application-list.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     UserDetailsComponent,
     LoginComponent,
     AdminPanelComponent,
+    ApplicationListComponent,
   ],
   imports: [
     BrowserModule,
