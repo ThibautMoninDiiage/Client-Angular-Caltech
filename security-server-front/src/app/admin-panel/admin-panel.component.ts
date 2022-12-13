@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { User } from '../models/user.interface';
 import { Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
+import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
 @Component({
   selector: 'app-admin-panel',
@@ -41,7 +42,7 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogAddUser);
+    const dialogRef = this.dialog.open(DialogAddUserComponent);
 
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`Dialog result: ${result}`);
@@ -50,11 +51,8 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
 
 }
 
-@Component({
-  selector: 'add-user-dialog',
-  templateUrl: 'add-user-dialog.html',
-})
-export class DialogAddUser {}
+
+
 
 const ELEMENT_DATA: User[] = [
   {id:0,username : "ShibaTheHut",mail : "thehut@goobdoy.org",avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",role : {name: "Regular"}},

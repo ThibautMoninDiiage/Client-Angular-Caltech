@@ -5,14 +5,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatNativeDateModule} from '@angular/material/core';
-import {MaterialExampleModule} from '../material.module';
+import {MaterialModule} from '../material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
-import { UserService } from './services/user.service';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     UserDetailsComponent,
     LoginComponent,
     AdminPanelComponent,
+    DialogAddUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatNativeDateModule,
-    MaterialExampleModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),

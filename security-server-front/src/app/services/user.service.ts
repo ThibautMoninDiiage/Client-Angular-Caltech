@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Role } from '../models/role.interface';
@@ -22,6 +22,13 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<Role[]>(`${Constants.baseUrl}/users`)
+    return this.http.get<User[]>(`${Constants.baseUrl}/users`)
+  }
+
+  postUser(user: User): Observable<User> {
+    var headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+     return this.http.post<User>(`${Constants.baseUrl}/users`, user,{ headers })
+
+    
   }
 }
