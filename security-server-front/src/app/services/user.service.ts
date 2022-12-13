@@ -22,6 +22,6 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<Role[]>(`${Constants.baseUrl}/users`)
+    return this.http.get<User[]>(`${Constants.baseUrl}/users`)
   }
 }

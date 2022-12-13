@@ -13,6 +13,7 @@ export class UserDetailsComponent implements OnInit {
   user: User = {
     username : "ShibaTheHut",
     mail : "thehut@goobdoy.org",
+    password: "dogdog",
     avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",
     role : {name: "Regular"}
   }
