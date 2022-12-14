@@ -4,22 +4,22 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="'../'" >
+      <button mat-menu-item [routerLink]="'../'" aria-label="button signOut">
         <mat-icon>weekend</mat-icon>
         <span>Sign Out</span>
       </button>
-      <button mat-menu-item [routerLink]="'admin-panel'">
+      <button mat-menu-item [routerLink]="'admin-panel'" arial-label="button navigate admin panel ">
         <mat-icon>list_alt</mat-icon>
         <span>User's List</span>
       </button>
-      <button mat-menu-item disabled>
+      <button mat-menu-item disabled aria-label="button navigate applications list">
         <mat-icon>font_download</mat-icon>
         <span>All App</span>
       </button>
     </mat-menu>
     <span>Auth Server</span>
     <span class="flexExpand"></span>
-    <button  mat-icon-button aria-label="user icon" [routerLink]="'user-details-component'" >
+    <button  mat-icon-button aria-label="user icon" [routerLink]="'user-details-component'" aria-label="button navigate user-details">
       <mat-icon>person_outline</mat-icon>
     </button>
   </mat-toolbar>
