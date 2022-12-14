@@ -43,10 +43,10 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );  
   }
 
 }
@@ -55,7 +55,7 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
 
 
 const ELEMENT_DATA: User[] = [
-  {id:0,username : "ShibaTheHut",mail : "thehut@goobdoy.org",avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",role : {name: "Regular"}},
+  {id:0,username : "ShibaTheHut",mail : "thehut@goobdoy.org",avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",role : {name: "Admin"}},
   {id:1,username : "DiegoDelFuego",mail : "youkilledmyfather@ricardo.com",avatar : "https://1.bp.blogspot.com/-rijx86cFoCg/X9O240WX-oI/AAAAAAAAC9k/uE3Y9s2E0_A0gocCVZ71ovfmgDIUgIOzQCLcBGAsYHQ/s16000/Teckel-1.webp",role : {name: "Regular"}},
   {id:2,username : "AlbanGoldenBoy",mail : "iluvmymama@goobdoy.org",avatar : "https://www.espritdog.com/wp-content/uploads/2021/08/esprit-dog-le-golden-retriever.png",role : {name: "Admin"}},
   {id:3,username : "RottBailleur",mail : "meateater@diiage.org",avatar : "https://www.centrale-canine.fr/sites/default/files/styles/race_characteristic_562x562/public/race_images/race/0030_T.png.webp?itok=MoLHverR",role : {name: "Regular"}},

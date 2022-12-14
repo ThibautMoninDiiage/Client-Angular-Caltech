@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../models/user.interface';
 import { UserService } from '../services/user.service';
 
@@ -28,7 +28,7 @@ export class DialogAddUserComponent {
 
   user! :User;
   
-  constructor(private formBuilder: FormBuilder,private _userService: UserService) {}
+  constructor(private formBuilder: FormBuilder,private _userService: UserService,private dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
   getErrorMessage() {
     if (this.userForm.controls.email.hasError('required') || this.userForm.controls.username.hasError('required') || this.userForm.controls.avatar.hasError('required') || this.userForm.controls.password.hasError('required')){
@@ -48,8 +48,11 @@ export class DialogAddUserComponent {
         role: {name: this.userForm.value.role as string}
       }
       console.log('Profile form data :: ', this.user);
-
       //this._userService.postUser(this.user);
+
+      this.dialogRef.close(this.user);
+
+  
     }
   }
 }

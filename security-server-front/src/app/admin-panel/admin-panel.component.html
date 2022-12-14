@@ -1,3 +1,7 @@
+<div class="top-box">
+  <button mat-raised-button color="primary" mat-button (click)="openDialog()"><mat-icon>add</mat-icon>Add User</button>
+</div>
+
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
         class="mat-elevation-z8">
@@ -67,8 +71,4 @@
     aria-label="Select page of users">
   </mat-paginator>
   
-</div>
-
-<div class="bottom-box">
-  <button mat-raised-button color="primary" mat-button (click)="openDialog()"><mat-icon>add</mat-icon>Add User</button>
 </div>
