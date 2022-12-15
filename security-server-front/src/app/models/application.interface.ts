@@ -1,6 +1,6 @@
 export interface Application {
-  id: number
+  id?: number
   name: string
-  link: string
+  url: string
   description: string
 }

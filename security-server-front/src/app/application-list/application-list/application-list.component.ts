@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Application } from 'src/app/models/application.interface';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatSort, Sort } from '@angular/material/sort';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogAddApplicationComponent } from 'src/app/dialog-add-application/dialog-add-application.component';
+import { Application } from 'src/app/models/application.interface'
 import { ApplicationService } from 'src/app/services/application.service';
-import { from, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-application-list',
@@ -17,8 +18,12 @@ export class ApplicationListComponent implements OnInit {
 
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
+  displayedColumns: string[] = ['name', 'description', 'link', 'action']
 
-  constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService) { }
+  @ViewChild(MatSort) sort!: MatSort
+  @ViewChild(MatPaginator) paginator!: MatPaginator
+
+  constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this._applicationService.getApplications()
@@ -30,11 +35,6 @@ export class ApplicationListComponent implements OnInit {
       })
   }
 
-  @ViewChild(MatSort) sort!: MatSort
-  @ViewChild(MatPaginator) paginator!: MatPaginator
-  
-  displayedColumns: string[] = ['name', 'description', 'link', 'action']
-
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`)
@@ -43,4 +43,7 @@ export class ApplicationListComponent implements OnInit {
     }
   }
 
+  onCreate() {
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent);
+  }
 }
