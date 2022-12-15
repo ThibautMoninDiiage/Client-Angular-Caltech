@@ -8,14 +8,14 @@
 
     <mat-form-field hintLabel="Min 3 - Max 15 char" appearance="fill">
       <mat-label>Enter a username</mat-label>
-      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Doug" [formControl]="userForm.controls.username" required>
+      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Doug" [formControl]="userForm.controls.username" required aria-label="input username">
       <mat-hint align="end">{{input.value.length}}/15</mat-hint>
       <mat-error *ngIf="userForm.controls.username.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input formcontrolname="email" matInput placeholder="doug@example.com" [formControl]="userForm.controls.email" required>
+      <input formcontrolname="email" matInput placeholder="doug@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
       <mat-error *ngIf="userForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
   </div>
@@ -23,7 +23,7 @@
   <div class="row">
     <mat-form-field hintLabel="Use an URL" appearance="fill">
       <mat-label>Link to the avatar</mat-label>
-      <input formcontrolname="avatar" matInput #input  placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg" [formControl]="userForm.controls.avatar" required>
+      <input formcontrolname="avatar" matInput #input  placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg" [formControl]="userForm.controls.avatar" required aria-label="input avatar">
       <mat-error *ngIf="userForm.controls.avatar.invalid">{{getErrorMessage()}}</mat-error>
       <mat-error *ngIf="userForm.controls.avatar.hasError('pattern')">
         Url Pattern Invalid
@@ -32,7 +32,7 @@
 
     <mat-form-field hintLabel="Min 5 characters" appearance="fill">
       <mat-label>Enter a password</mat-label>
-      <input matInput formcontrolname="password" [type]="hide ? 'password' : 'text'" [formControl]="userForm.controls.password" required>
+      <input matInput formcontrolname="password" [type]="hide ? 'password' : 'text'" [formControl]="userForm.controls.password" required aria-label="input password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -42,7 +42,7 @@
   <div class="row">
     <mat-form-field appearance="fill">
       <mat-label>User's role</mat-label>
-      <mat-select formcontrolname="role" [formControl]="userForm.controls.role">
+      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role">
         <mat-option value="regular">Regular</mat-option>
         <mat-option value="admin">Admin</mat-option>
       </mat-select>
@@ -50,9 +50,7 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-raised-button color="primary"  (click)="onSubmit()" cdkFocusInitial>Create</button>
+  <button mat-button mat-raised-button mat-dialog-close aria-label="button close dialog">Cancel</button>
+  <button mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">Create</button>
 </mat-dialog-actions>
 </form>
-
-<!-- [mat-dialog-close]="true" -->
