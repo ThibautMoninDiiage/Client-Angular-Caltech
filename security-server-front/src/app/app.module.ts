@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ApplicationListComponent } from './application-list/application-list/application-list.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { ApplicationEditComponent } from './application-edit/application-edit.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.compon
     AdminPanelComponent,
     ApplicationListComponent,
     DialogAddUserComponent,
+    ApplicationEditComponent,
   ],
   imports: [
     BrowserModule,
