@@ -1,7 +1,6 @@
-
 <div class="container">
   <div class="container_left">
-    <ng-lottie  [options]="options"></ng-lottie>
+    <ng-lottie [options]="options"></ng-lottie>
   </div>
   <div class="container_center">
     <mat-card class="card">
@@ -11,14 +10,15 @@
       <mat-card-content class="card_content">
         <mat-form-field appearance="fill" class="field">
           <mat-label>Enter your email</mat-label>
-          <input matInput placeholder="pat@example.com" [formControl]="email" required>
+          <input aria-label="Email input" matInput placeholder="pat@example.com" [formControl]="email" required>
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-        <mat-divider ></mat-divider>
+        <mat-divider></mat-divider>
         <mat-form-field appearance="fill" class="field">
           <mat-label>Enter your password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <input aria-label="Password input" matInput [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
@@ -26,7 +26,7 @@
         <mat-divider></mat-divider>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button [routerLink]="'user-details-component'" >LOGIN</button>
+        <button mat-button [routerLink]="'user-details-component'">LOGIN</button>
       </mat-card-actions>
     </mat-card>
   </div>
