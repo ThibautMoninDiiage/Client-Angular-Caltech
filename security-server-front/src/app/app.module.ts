@@ -14,8 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ApplicationListComponent } from './application-list/application-list/application-list.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
-import { ApplicationEditComponent } from './application-edit/application-edit.component';
-
+import { DialogAddApplicationComponent } from './dialog-add-application/dialog-add-application.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,7 @@ import { ApplicationEditComponent } from './application-edit/application-edit.co
     AdminPanelComponent,
     ApplicationListComponent,
     DialogAddUserComponent,
-    ApplicationEditComponent,
+    DialogAddApplicationComponent,
   ],
   imports: [
     BrowserModule,
