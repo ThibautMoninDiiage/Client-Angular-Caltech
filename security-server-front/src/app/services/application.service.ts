@@ -13,7 +13,7 @@ export class ApplicationService {
   constructor(private _httpClient: HttpClient) { }
 
   getApplications(): Observable<Application[]> {
-    return this._httpClient.get<Application[]>(`${Constants.applicationEndpoint}`)
+    return this._httpClient.get<Application[]>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`)
       .pipe(map((application) => {
         return application
       }))
