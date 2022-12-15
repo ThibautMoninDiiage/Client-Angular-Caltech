@@ -1,8 +1,10 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DialogAddApplicationComponent } from 'src/app/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
 import { ApplicationService } from 'src/app/services/application.service';
 
@@ -13,15 +15,15 @@ import { ApplicationService } from 'src/app/services/application.service';
 })
 
 export class ApplicationListComponent implements OnInit {
-  
+
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
   displayedColumns: string[] = ['name', 'description', 'link', 'action']
 
   @ViewChild(MatSort) sort!: MatSort
   @ViewChild(MatPaginator) paginator!: MatPaginator
-  
-  constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService) { }
+
+  constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this._applicationService.getApplications()
@@ -42,7 +44,6 @@ export class ApplicationListComponent implements OnInit {
   }
 
   onCreate() {
-    alert('Application has been created !')
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent);
   }
-
 }
