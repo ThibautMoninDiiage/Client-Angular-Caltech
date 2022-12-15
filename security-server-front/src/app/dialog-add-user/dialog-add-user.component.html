@@ -6,6 +6,22 @@
 
   <div class="row">
 
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a firstname</mat-label>
+      <input formcontrolname="firstname" matInput #input placeholder="Ex. Diego" [formControl]="userForm.controls.firstname" required aria-label="input firstname">
+      <mat-error *ngIf="userForm.controls.firstname.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a lastname</mat-label>
+      <input formcontrolname="lastname" matInput #input placeholder="Ex. Delfuego" [formControl]="userForm.controls.lastname" required aria-label="input lastname">
+      <mat-error *ngIf="userForm.controls.lastname.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div class="row">
+
     <mat-form-field hintLabel="Min 3 - Max 15 char" appearance="fill">
       <mat-label>Enter a username</mat-label>
       <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Doug" [formControl]="userForm.controls.username" required aria-label="input username">
@@ -41,10 +57,11 @@
   </div>  
   <div class="row">
     <mat-form-field appearance="fill">
-      <mat-label>User's role</mat-label>
+      <mat-label>User role</mat-label>
       <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role">
-        <mat-option value="regular">Regular</mat-option>
-        <mat-option value="admin">Admin</mat-option>
+        <ng-container *ngIf="roles$ | async as roles; else loading">
+          <mat-option *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</mat-option>
+        </ng-container>
       </mat-select>
     </mat-form-field>
   </div>
@@ -53,4 +70,7 @@
   <button mat-button mat-raised-button mat-dialog-close aria-label="button close dialog">Cancel</button>
   <button mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">Create</button>
 </mat-dialog-actions>
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
 </form>

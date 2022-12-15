@@ -5,7 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { User } from '../models/user.interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { UserService } from '../services/user.service';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
@@ -15,22 +15,27 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
   styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['id', 'username', 'mail', 'avatar','role','action'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  //users$! : Observable<MatTableDataSource<User>>; 
+  displayedColumns: string[] = ['id', 'username', 'mail','role', 'avatar','action'];
+  dataSource!: MatTableDataSource<User>;
 
   constructor(private _liveAnnouncer: LiveAnnouncer, private _userService: UserService,public dialog: MatDialog) {}
-
-  users$! : Observable<User[]>; 
+ 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+
   ngOnInit() {
-   // this.users$ = this._userService.getUsers();
+    this._userService.getUsers().subscribe(users => {
+         this.dataSource = new MatTableDataSource(users);
+         this.dataSource.sort = this.sort;
+         this.dataSource.paginator = this.paginator;
+       });
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
   }
 
   announceSortChange(sortState: Sort) {
@@ -45,7 +50,11 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
     
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      data => { this._userService.getUsers().subscribe(users => {
+        this.dataSource = new MatTableDataSource(users);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });}
     );  
   }
 

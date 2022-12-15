@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
+import { Role } from '../models/role.interface';
 import { User } from '../models/user.interface';
 import { UserService } from '../services/user.service';
 
@@ -10,12 +11,10 @@ import { UserService } from '../services/user.service';
   templateUrl: './dialog-add-user.component.html',
   styleUrls: ['./dialog-add-user.component.scss']
 })
-export class DialogAddUserComponent {
+export class DialogAddUserComponent implements OnInit {
   hide = true;
-  // email = new FormControl('', [Validators.required, Validators.email]);
-  // username = new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]);
-  // avatar = new FormControl('', [Validators.required]);
-  // password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  user! :User;
+  roles$!: Observable<Role[]>;
 
   myreg = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi // regex hautement explosif ne pas toucher
 
@@ -25,12 +24,17 @@ export class DialogAddUserComponent {
   avatar : new FormControl('', [Validators.required, Validators.pattern(this.myreg)]),
   password : new FormControl('', [Validators.required, Validators.minLength(5)]),
   role: new FormControl(''),
+  firstname: new FormControl('',[Validators.required]),
+  lastname: new FormControl('',[Validators.required]),
   });
 
-  user! :User;
+  
   
   constructor(private formBuilder: FormBuilder,private _userService: UserService,private dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
+  ngOnInit() {
+    this.roles$ = this._userService.getRoles();
+  }
   getErrorMessage() {
     if (this.userForm.controls.email.hasError('required') || this.userForm.controls.username.hasError('required') || this.userForm.controls.avatar.hasError('required') || this.userForm.controls.password.hasError('required')){
       return 'You must enter valid value';
@@ -46,7 +50,9 @@ export class DialogAddUserComponent {
         mail: this.userForm.value.email as string,
         avatar: this.userForm.value.avatar as string,
         password: this.userForm.value.password as string,
-        role: {name: this.userForm.value.role as string}
+        role: {name: this.userForm.value.role as string},
+        firstname: this.userForm.value.firstname as string,
+        lastname: this.userForm.value.lastname as string
       }
       console.log('Profile form data :: ', this.user);
       await firstValueFrom(this._userService.postUser(this.user));
