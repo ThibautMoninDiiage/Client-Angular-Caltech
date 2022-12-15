@@ -4,12 +4,17 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ApplicationListComponent } from './application-list/application-list/application-list.component';
 import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent },
+  {path:'**',redirectTo:'notfound'},
+  {path: '', pathMatch: `full`, redirectTo: 'home' },
+  {path: 'home', component: LoginComponent },
   {path: 'admin-panel', component: AdminPanelComponent},
   {path: 'user-details-component', component: UserDetailsComponent},
   {path: 'app-application-list', component: ApplicationListComponent},
+  {path: 'user-details-component', component: UserDetailsComponent},
+  {path: 'notfound', component: NotfoundComponent },
 ];
 
 @NgModule({
