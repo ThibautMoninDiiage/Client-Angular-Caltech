@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.compon
     LoginComponent,
     AdminPanelComponent,
     DialogAddUserComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
