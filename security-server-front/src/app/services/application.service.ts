@@ -19,4 +19,8 @@ export class ApplicationService {
       }))
   }
 
+  postApplication(application: Application) {
+    this._httpClient.post<Application>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`, application)
+  }
+
 }
