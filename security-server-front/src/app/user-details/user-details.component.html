@@ -2,7 +2,7 @@
 <mat-card class="details-card">
   <mat-card-header>
     <ng-container *ngIf="userhttp$ | async as User; else loading"> -->
-    <!-- <img mat-card-avatar class="avatar-header-image" src="{{(userhttp$ | async).avatar}}" alt="user's avatar"/> -->
+    <!-- <img mat-card-avatar class="avatar-header-image" src="{{(userhttp$ | async).avatar}}" alt="user avatar"/> -->
     <mat-card-title>{{user.username}}</mat-card-title>
     <mat-card-subtitle>{{user.mail}}</mat-card-subtitle>
  </ng-container>

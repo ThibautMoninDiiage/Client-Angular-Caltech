@@ -6,12 +6,12 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
-  {path:'**',redirectTo:'notfound'},
   {path: '', pathMatch: `full`, redirectTo: 'home' },
   {path: 'home', component: LoginComponent },
   {path: 'admin-panel', component: AdminPanelComponent},
   {path: 'user-details-component', component: UserDetailsComponent},
   {path: 'notfound', component: NotfoundComponent },
+  {path:'**',redirectTo:'notfound'},
 ];
 
 @NgModule({
