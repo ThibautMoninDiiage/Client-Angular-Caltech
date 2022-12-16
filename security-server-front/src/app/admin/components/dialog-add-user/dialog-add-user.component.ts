@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
-import { Role } from '../models/role.interface';
-import { User } from '../models/user.interface';
-import { UserService } from '../services/user.service';
+import { Role } from '../../../models/role.interface';
+import { User } from '../../../models/user.interface';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-dialog-add-user',

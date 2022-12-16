@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable} from 'rxjs';
-import { Role } from '../models/role.interface';
-import { User } from '../models/user.interface';
-import { UserService } from '../services/user.service';
+import { Role } from '../../../models/role.interface';
+import { User } from '../../../models/user.interface';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -13,7 +13,6 @@ export class UserDetailsComponent implements OnInit {
   user: User = {
     username : "ShibaTheHut",
     mail : "thehut@goobdoy.org",
-    password: "dogdog",
     avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",
     role : {name: "Regular"}
   }
@@ -24,7 +23,6 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this._userService.getUserDetails(1).subscribe(user => {this.userhttp = user});
     this.userhttp$ = this._userService.getUserDetails(1);
     this.roles$ = this._userService.getRoles();
   }

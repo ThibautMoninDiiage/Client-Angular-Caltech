@@ -1,8 +1,8 @@
 <div class="container">
 <mat-card class="details-card">
   <mat-card-header>
-    <ng-container *ngIf="userhttp$ | async as User; else loading"> -->
-    <!-- <img mat-card-avatar class="avatar-header-image" src="{{(userhttp$ | async).avatar}}" alt="user avatar"/> -->
+    <ng-container *ngIf="userhttp$ | async as user; else loading"> 
+    <img mat-card-avatar class="avatar-header-image" [src]="user.avatar" alt="user avatar"/>
     <mat-card-title>{{user.username}}</mat-card-title>
     <mat-card-subtitle>{{user.mail}}</mat-card-subtitle>
  </ng-container>
@@ -17,7 +17,7 @@
     </ng-template>
   </mat-card-content>
   <mat-card-actions class="card-content">
-    <button mat-raised-button color="warn" [routerLink]="'../admin-panel'" aria-label="button change user password">Change password</button>
+    <button mat-raised-button color="warn" [routerLink]="'/admin/admin-panel'" aria-label="button change user password">Change password</button>
   </mat-card-actions>
 </mat-card>
 </div>
