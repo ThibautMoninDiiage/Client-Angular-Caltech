@@ -3,27 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MaterialModule} from '../material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
-import { UserDetailsComponent } from './user-details/user-details.component';
 import { LoginComponent } from './login/login.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    UserDetailsComponent,
     LoginComponent,
-    AdminPanelComponent,
-    DialogAddUserComponent,
     NotfoundComponent,
   ],
   imports: [
@@ -36,6 +29,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     FormsModule,
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
