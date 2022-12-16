@@ -37,7 +37,7 @@ export class DialogAddUserComponent implements OnInit {
   }
   getErrorMessage() {
     if (this.userForm.controls.email.hasError('required') || this.userForm.controls.username.hasError('required') || this.userForm.controls.avatar.hasError('required') || this.userForm.controls.password.hasError('required')){
-      return 'You must enter valid value';
+      return 'You must enter a valid value';
     }
     
     return this.userForm.controls.email.hasError('email') ? 'Not a valid email' : '';
