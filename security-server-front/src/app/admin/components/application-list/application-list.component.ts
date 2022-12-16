@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DialogAddApplicationComponent } from 'src/app/dialog-add-application/dialog-add-application.component';
+import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
 import { ApplicationService } from 'src/app/services/application.service';
 

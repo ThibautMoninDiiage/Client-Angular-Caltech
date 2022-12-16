@@ -10,21 +10,14 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-  user: User = {
-    username : "ShibaTheHut",
-    mail : "thehut@goobdoy.org",
-    avatar : "https://material.angular.io/assets/img/examples/shiba1.jpg",
-    role : {name: "Regular"}
-  }
+
   userhttp$! : Observable<User>;
-  roles$! : Observable<Role[]>; 
 
   constructor(private _userService: UserService) {
   }
 
   ngOnInit() {
     this.userhttp$ = this._userService.getUserDetails(1);
-    this.roles$ = this._userService.getRoles();
   }
 
 }

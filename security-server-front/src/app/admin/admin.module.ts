@@ -6,10 +6,12 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialModule } from 'src/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApplicationListComponent } from './components/application-list/application-list.component';
+import { DialogAddApplicationComponent } from './components/dialog-add-application/dialog-add-application.component';
 
 
 @NgModule({
-  declarations: [AdminPanelComponent, DialogAddUserComponent],
+  declarations: [AdminPanelComponent, DialogAddUserComponent, ApplicationListComponent,DialogAddApplicationComponent,DialogAddApplicationComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
