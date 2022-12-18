@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { AnimationOptions } from 'ngx-lottie'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
-import { AuthenticationService } from '../services/authentication.service'
+import { AuthenticationService } from '../services/authentication/authentication.service'
 import { Router } from '@angular/router';
 
 @Component({

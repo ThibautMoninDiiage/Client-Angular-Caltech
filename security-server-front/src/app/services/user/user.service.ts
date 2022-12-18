@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Role } from '../models/role.interface';
-import { User } from "../models/user.interface"
-import Constants from '../utils/constants';
+import { Role } from '../../models/role.interface';
+import { User } from "../../models/user.interface"
+import Constants from '../../utils/constants';
 
 @Injectable({
   providedIn: 'root'

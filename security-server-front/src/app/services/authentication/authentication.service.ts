@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.interface';
-import Constants from '../utils/constants';
+import { User } from '../../models/user.interface';
+import Constants from '../../utils/constants';
 import jwtDecode from 'jwt-decode';
 import { map, shareReplay } from 'rxjs';
-import { UserDTO } from '../models/userDTO.model';
+import { UserDTO } from '../../models/userDTO.model';
 
 @Injectable({
   providedIn: 'root'
