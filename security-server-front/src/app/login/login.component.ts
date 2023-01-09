@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { AnimationOptions } from 'ngx-lottie'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthenticationService } from '../services/authentication/authentication.service'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent {
 
-  hide = true;
+  hide = true
   options: AnimationOptions = {
     path: './assets/animations/home-animation.json',
   }
@@ -37,7 +37,6 @@ export class LoginComponent {
     if (this.form.value.email && this.form.value.password) {
       this._authenticationService.signIn(this.form.value.email, this.form.value.password!)
         .subscribe(() => {
-          console.log(`Toto l'idiot a réussi a se connecté.`);
           this._router.navigateByUrl('/admin-panel')
       })
     }
