@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Role } from '../../../models/role.interface';
 import { User } from '../../../models/user.interface';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-dialog-add-user',
