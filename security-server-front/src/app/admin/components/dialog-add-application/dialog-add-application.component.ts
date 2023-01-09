@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Application } from '../models/application.interface';
-import { ApplicationService } from '../services/application.service';
+import { Application } from '../../../models/application.interface';
+import { ApplicationService } from '../../../services/application.service';
 
 @Component({
   selector: 'dialog-add-application',

@@ -9,18 +9,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LottieModule } from 'ngx-lottie';
 import { LoginComponent } from './login/login.component';
-import { ApplicationListComponent } from './application-list/application-list/application-list.component';
-import { DialogAddApplicationComponent } from './dialog-add-application/dialog-add-application.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SharedModule } from './shared/shared.module';
+import { AboutComponent } from './about/about.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ApplicationListComponent,
-    DialogAddApplicationComponent,
     NotfoundComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +31,8 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),
-    SharedModule
+    SharedModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
