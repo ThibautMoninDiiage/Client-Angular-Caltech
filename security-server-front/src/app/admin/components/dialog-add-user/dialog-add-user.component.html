@@ -64,6 +64,14 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select an app</mat-label>
+      <mat-select formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application">
+        <ng-container *ngIf="apps$ | async as apps; else loading">
+          <mat-option *ngFor="let app of apps" value="{{app.id}}">{{app.name}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

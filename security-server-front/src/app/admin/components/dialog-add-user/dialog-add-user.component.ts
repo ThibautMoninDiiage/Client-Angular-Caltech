@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom, Observable } from 'rxjs';
+import { Application } from 'src/app/models/application.interface';
 import { Role } from '../../../models/role.interface';
 import { User } from '../../../models/user.interface';
 import { UserService } from '../../../services/user.service';
@@ -15,6 +16,7 @@ export class DialogAddUserComponent implements OnInit {
   hide = true;
   user! :User;
   roles$!: Observable<Role[]>;
+  apps$!: Observable<Application[]>;
 
   myreg = /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi // regex hautement explosif ne pas toucher
 
@@ -26,6 +28,7 @@ export class DialogAddUserComponent implements OnInit {
   role: new FormControl(''),
   firstname: new FormControl('',[Validators.required]),
   lastname: new FormControl('',[Validators.required]),
+  application: new FormControl(''),
   });
 
   
