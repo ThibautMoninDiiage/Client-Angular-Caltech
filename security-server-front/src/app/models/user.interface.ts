@@ -9,5 +9,6 @@ export interface User {
   role : Role;
   firstname?: string;
   lastname?: string;
+  idApplication?: number;
 }
 

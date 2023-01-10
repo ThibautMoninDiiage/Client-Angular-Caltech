@@ -26,9 +26,7 @@ export class UserService {
   }
 
   postUser(user: User): Observable<User> {
-    var headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
      return this.http.post<User>(`${Constants.baseUrl}/panelAdmin`, user,{ headers });
-
-    
   }
 }

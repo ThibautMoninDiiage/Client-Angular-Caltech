@@ -58,7 +58,7 @@
   <div class="row">
     <mat-form-field appearance="fill">
       <mat-label>User role</mat-label>
-      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role">
+      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role" required>
         <ng-container *ngIf="roles$ | async as roles; else loading">
           <mat-option *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</mat-option>
         </ng-container>
@@ -66,7 +66,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Select an app</mat-label>
-      <mat-select formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application">
+      <mat-select formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application" required>
         <ng-container *ngIf="apps$ | async as apps; else loading">
           <mat-option *ngFor="let app of apps" value="{{app.id}}">{{app.name}}</mat-option>
         </ng-container>

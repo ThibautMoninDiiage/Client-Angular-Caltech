@@ -6,6 +6,7 @@ import { Application } from 'src/app/models/application.interface';
 import { Role } from '../../../models/role.interface';
 import { User } from '../../../models/user.interface';
 import { UserService } from '../../../services/user.service';
+import { ApplicationService } from '../../../services/application.service';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -33,10 +34,11 @@ export class DialogAddUserComponent implements OnInit {
 
   
   
-  constructor(private formBuilder: FormBuilder,private _userService: UserService,private dialogRef: MatDialogRef<DialogAddUserComponent>) {}
+  constructor(private formBuilder: FormBuilder,private _userService: UserService,private _applicationService: ApplicationService,private dialogRef: MatDialogRef<DialogAddUserComponent>) {}
 
   ngOnInit() {
     this.roles$ = this._userService.getRoles();
+    this.apps$ = this._applicationService.getApplications();
   }
   getErrorMessage() {
     if (this.userForm.controls.email.hasError('required') || this.userForm.controls.username.hasError('required') || this.userForm.controls.avatar.hasError('required') || this.userForm.controls.password.hasError('required')){
@@ -55,7 +57,8 @@ export class DialogAddUserComponent implements OnInit {
         password: this.userForm.value.password as string,
         role: {name: this.userForm.value.role as string},
         firstname: this.userForm.value.firstname as string,
-        lastname: this.userForm.value.lastname as string
+        lastname: this.userForm.value.lastname as string,
+        idApplication: this.userForm.value.application as unknown as number
       }
       console.log('Profile form data :: ', this.user);
       await firstValueFrom(this._userService.postUser(this.user));
