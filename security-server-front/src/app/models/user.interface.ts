@@ -1,3 +1,4 @@
+import { Application } from "./application.interface";
 import { Role } from "./role.interface";
 
 export interface User {
@@ -6,9 +7,11 @@ export interface User {
   password?: string
   mail: string;
   avatar: string;
-  role : Role;
   firstname?: string;
   lastname?: string;
   idApplication?: number;
+  applictions?: Array<Application>;
+  role?: Role;
+
 }
 
