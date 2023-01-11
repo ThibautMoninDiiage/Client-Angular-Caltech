@@ -10,7 +10,7 @@ export interface User {
   firstname?: string;
   lastname?: string;
   idApplication?: number;
-  applictions?: Array<Application>;
+  applications?: Array<Application>;
   role?: Role;
 
 }

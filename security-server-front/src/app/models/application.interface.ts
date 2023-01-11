@@ -6,5 +6,5 @@ export interface Application {
   url: string;
   description: string;
   redirectUri?: string;
-  roles?: Array<Role>;
+  role?: Role;
 }
