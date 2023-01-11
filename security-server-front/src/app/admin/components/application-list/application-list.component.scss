@@ -21,3 +21,41 @@ th.mat-sort-header-sorted {
   padding: 2%;
   
 }
+
+tr.application-detail-row {
+  height: 0;
+}
+
+tr.application-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.application-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.application-row td {
+  border-bottom-width: 0;
+}
+
+.application-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+// .application-diagram {
+//   min-width: 80px;
+//   border: 2px solid black;
+//   padding: 8px;
+//   font-weight: lighter;
+//   margin: 8px 0;
+//   height: 104px;
+// }
+
+.application-description {
+  padding: 16px;
+}
+
+.application-link-attribution {
+  opacity: 0.5;
+}

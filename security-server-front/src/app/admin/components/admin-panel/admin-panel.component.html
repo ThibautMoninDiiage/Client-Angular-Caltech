@@ -38,13 +38,6 @@
       <td mat-cell *matCellDef="let element"><img mat-table-avatar class="avatar-image" src="{{element.avatar}}" alt="avatar of the user"/></td>
     </ng-container>
 
-    <!-- Role Column -->
-    <ng-container matColumnDef="role">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Role" aria-label="column to display the user's role">
-        Role
-      </th>
-      <td mat-cell *matCellDef="let element"> {{element.role.name}} </td>
-    </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="action">

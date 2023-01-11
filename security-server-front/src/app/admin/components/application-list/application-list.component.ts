@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,19 +7,29 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
+import { User } from 'src/app/models/user.interface';
 import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-application-list',
   templateUrl: './application-list.component.html',
-  styleUrls: ['./application-list.component.scss']
+  styleUrls: ['./application-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 
 export class ApplicationListComponent implements OnInit {
 
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
-  displayedColumns: string[] = ['name', 'description', 'link', 'action']
+  displayedColumns: string[] = ['id','name', 'description', 'url']
+  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand']
+  expandedElement?: Application
 
   @ViewChild(MatSort) sort!: MatSort
   @ViewChild(MatPaginator) paginator!: MatPaginator
