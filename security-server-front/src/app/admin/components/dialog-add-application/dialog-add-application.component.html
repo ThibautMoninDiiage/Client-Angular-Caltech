@@ -17,7 +17,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Application description</mat-label>
-        <input aria-label="Application name input" formcontrolname="description" matInput placeholder="Google is..."
+        <input aria-label="Application description input" formcontrolname="description" matInput placeholder="Google is..."
           [formControl]="applicationForm.controls.description" required>
         <mat-error *ngIf="applicationForm.controls.description.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -26,7 +26,18 @@
     <div class="row">
       <mat-form-field hintLabel="Use an URL" appearance="fill">
         <mat-label>Application URL</mat-label>
-        <input aria-label="Application name input" formcontrolname="url" matInput #input
+        <input aria-label="Application url input" formcontrolname="url" matInput #input
+          placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          [formControl]="applicationForm.controls.url" required>
+        <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="applicationForm.controls.url.hasError('pattern')">
+          Url Pattern Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Use an URI" appearance="fill">
+        <mat-label>Redirection URI</mat-label>
+        <input aria-label="Application uri input" formcontrolname="url" matInput #input
           placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
           [formControl]="applicationForm.controls.url" required>
         <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
