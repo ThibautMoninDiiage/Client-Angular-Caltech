@@ -18,7 +18,7 @@ export class ApplicationListComponent implements OnInit {
 
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
-  displayedColumns: string[] = ['name', 'description', 'link', 'action']
+  displayedColumns: string[] = ['name', 'description', 'url', 'action']
 
   @ViewChild(MatSort) sort!: MatSort
   @ViewChild(MatPaginator) paginator!: MatPaginator
@@ -44,6 +44,16 @@ export class ApplicationListComponent implements OnInit {
   }
 
   onCreate() {
-    const dialogRef = this.dialog.open(DialogAddApplicationComponent);
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent)
+
+    dialogRef.afterClosed().subscribe(data => {
+      this._applicationService.getApplications()
+      .subscribe(results => {
+        this.applications = results
+        this.dataSource = new MatTableDataSource(this.applications)
+        this.dataSource.sort = this.sort
+        this.dataSource.paginator = this.paginator
+      })
+    })
   }
 }

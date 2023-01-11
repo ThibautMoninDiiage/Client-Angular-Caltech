@@ -28,11 +28,11 @@
       <td mat-cell *matCellDef="let application"> {{application.description}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="link">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by link">
-        Link
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by url">
+        Url
       </th>
-      <td mat-cell *matCellDef="let application">{{application.link}}</td>
+      <td mat-cell *matCellDef="let application">{{application.url}}</td>
     </ng-container>
 
     <ng-container matColumnDef="action">

@@ -19,8 +19,8 @@ export class ApplicationService {
       }))
   }
 
-  postApplication(application: Application) {
-    this._httpClient.post<Application>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`, application)
+  postApplication(application: Application): Observable<Application> {
+    return this._httpClient.post<Application>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`, application)
   }
 
 }
