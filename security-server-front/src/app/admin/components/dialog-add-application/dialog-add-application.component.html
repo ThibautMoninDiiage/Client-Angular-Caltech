@@ -37,9 +37,9 @@
 
       <mat-form-field hintLabel="Use an URI" appearance="fill">
         <mat-label>Redirection URI</mat-label>
-        <input aria-label="Application uri input" formcontrolname="url" matInput #input
+        <input aria-label="Application uri input" formcontrolname="redirectUri" matInput #input
           placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
-          [formControl]="applicationForm.controls.url" required>
+          [formControl]="applicationForm.controls.redirectUri" required>
         <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
         <mat-error *ngIf="applicationForm.controls.url.hasError('pattern')">
           Url Pattern Invalid
