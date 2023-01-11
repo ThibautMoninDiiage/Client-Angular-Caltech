@@ -18,7 +18,7 @@ export class ApplicationListComponent implements OnInit {
 
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
-  displayedColumns: string[] = ['name', 'description', 'link', 'action']
+  displayedColumns: string[] = ['name', 'description', 'url', 'action']
 
   @ViewChild(MatSort) sort!: MatSort
   @ViewChild(MatPaginator) paginator!: MatPaginator
