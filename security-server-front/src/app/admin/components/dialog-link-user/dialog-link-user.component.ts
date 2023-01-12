@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, map, Observable, startWith } from 'rxjs';
 import { Application } from 'src/app/models/application.interface';
 import { Role } from '../../../models/role.interface';
 import { UserService } from '../../../services/user.service';
@@ -18,9 +18,12 @@ import { User } from 'src/app/models/user.interface';
 })
 export class DialogLinkUserComponent {
   hide = true;
+  myControl = new FormControl<string | User>('');
   userAppRole! :UserAppRole;
   roles$!: Observable<Role[]>;
   users$!: Observable<User[]>;
+  filteredOptions$!: Observable<User[]>;
+  users! : User[];
 
   userForm = this.formBuilder.group({
   role: new FormControl(''),
@@ -32,6 +35,31 @@ export class DialogLinkUserComponent {
   ngOnInit() {
     this.roles$ = this._userService.getRoles();
     //this.users$ = this._applicationService.getUserNotInApp(this.data);
+
+    // this.filteredOptions$ = this.myControl.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filter(value || '')),
+    // );
+
+
+    this.users$.subscribe(users => {this.users = users as User[];});
+
+    this.filteredOptions$ = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const mail = typeof value === 'string' ? value : value?.mail;
+        return mail ? this._filter(mail as string) : this.users.slice();
+      }),
+    );
+  }
+  private _filter(value: string) {
+    const filterValue = value.toLowerCase();
+
+    return this.users.filter(user => user.mail.toLowerCase().includes(filterValue));
+  }
+
+  displayFn(user: User): string {
+    return user && user.mail ? user.mail : '';
   }
 
   async onSubmit() {

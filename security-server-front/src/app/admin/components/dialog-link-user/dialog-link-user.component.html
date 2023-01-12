@@ -14,12 +14,12 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-autocomplete #auto="matAutocomplete">
-        <ng-container *ngIf="users$ | async as users; else loading">
-          <mat-option *ngFor="let user of users" [value]="user.id">
-            {{user.mail}}
-          </mat-option>
-      </ng-container>
+      <mat-label>User Mail</mat-label>
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let user of filteredOptions$ | async" [value]="users">
+          {{user.mail}}
+        </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </div>
