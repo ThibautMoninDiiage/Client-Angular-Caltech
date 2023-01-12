@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Application } from '../models/application.interface';
+import { User } from '../models/user.interface';
 import Constants from '../utils/constants';
 
 @Injectable({
@@ -19,8 +20,16 @@ export class ApplicationService {
       }))
   }
 
-  postApplication(application: Application) {
-    this._httpClient.post<Application>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`, application)
+  postApplication(application: Application): Observable<Application> {
+    return this._httpClient.post<Application>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`, application)
   }
+
+  getUserByAppid(appId: number): Observable<User[]> {
+    return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/aledun/${appId}`);
+   }
+
+   getUserNotInApp(appId: number): Observable<User[]> {
+    return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/aleddeux/${appId}`);
+   }
 
 }

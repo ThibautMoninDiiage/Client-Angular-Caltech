@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
+import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from '../../../models/application.interface';
-import { ApplicationService } from '../../../services/application.service';
+
 
 @Component({
   selector: 'dialog-add-application',
@@ -18,10 +21,11 @@ export class DialogAddApplicationComponent {
   applicationForm = this.formBuilder.group({
     name: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
     description: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)]),
-    url: new FormControl('', [Validators.required, Validators.pattern(this.myreg)])
+    url: new FormControl('', [Validators.required, Validators.pattern(this.myreg)]),
+    redirectUri: new FormControl('', [Validators.required, Validators.maxLength(15), Validators.minLength(3)])
   });
 
-  constructor(private formBuilder: FormBuilder, private _applicationService: ApplicationService) { }
+  constructor(private formBuilder: FormBuilder, private _applicationService: ApplicationService, public dialog: MatDialogRef<DialogAddApplicationComponent>) { }
 
   getErrorMessage() {
     if (this.applicationForm.controls.name.hasError('required')
@@ -33,19 +37,19 @@ export class DialogAddApplicationComponent {
     return this.applicationForm.controls.name.hasError('name') ? 'Not a valid name' : '';
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.applicationForm.valid) {
       this.application = {
         name: this.applicationForm.value.name as string,
         description: this.applicationForm.value.description as string,
-        url: this.applicationForm.value.url as string
+        url: this.applicationForm.value.url as string,
+        redirectUri: this.applicationForm.value.redirectUri as string
       }
 
-    // this._applicationService.postApplication(this.application)
+      await firstValueFrom(this._applicationService.postApplication(this.application))
 
+      this.dialog.close(this.application)
     }
-
-    console.log('Profile form data :: ', this.application);
-
   }
+
 }

@@ -9,6 +9,7 @@ import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-a
 import { Application } from 'src/app/models/application.interface'
 import { User } from 'src/app/models/user.interface';
 import { ApplicationService } from 'src/app/services/application.service';
+import { DialogLinkUserComponent } from '../dialog-link-user/dialog-link-user.component';
 
 @Component({
   selector: 'app-application-list',
@@ -55,18 +56,32 @@ export class ApplicationListComponent implements OnInit {
   }
 
   onCreate() {
-    const dialogRef = this.dialog.open(DialogAddApplicationComponent);
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent)
+
+    dialogRef.afterClosed().subscribe(data => {
+      this._applicationService.getApplications()
+      .subscribe(results => {
+        this.applications = results
+        this.dataSource = new MatTableDataSource(this.applications)
+        this.dataSource.sort = this.sort
+        this.dataSource.paginator = this.paginator
+      })
+    })
   }
 
-  openDialog() {
-   // const dialogRef = this.dialog.open(DialogAddUserComponent);
-    
-    // dialogRef.afterClosed().subscribe(
-    //   data => { this._userService.getUsers().subscribe(users => {
-    //     this.dataSource = new MatTableDataSource(users);
-    //     this.dataSource.sort = this.sort;
-    //     this.dataSource.paginator = this.paginator;
-    //   });}
-    // );  
+  openDialog(appId: number) {
+    const dialogRef = this.dialog.open(DialogLinkUserComponent, {
+      data: appId
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      this._applicationService.getApplications()
+      .subscribe(results => {
+        this.applications = results
+        this.dataSource = new MatTableDataSource(this.applications)
+        this.dataSource.sort = this.sort
+        this.dataSource.paginator = this.paginator
+      })
+    })
   }
 }

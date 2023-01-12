@@ -26,7 +26,7 @@
       <td mat-cell *matCellDef="let application" [attr.colspan]="columnsToDisplayWithExpand.length">
         <div class="application-detail"
              [@detailExpand]="application == expandedElement ? 'expanded' : 'collapsed'">
-            <button mat-raised-button color="primary" mat-button (click)="openDialog()"><mat-icon>add</mat-icon>
+            <button mat-raised-button color="primary" mat-button (click)="openDialog(application.id)"><mat-icon>add</mat-icon>
               Add User to App 
             </button>
              <div class="application-description">
