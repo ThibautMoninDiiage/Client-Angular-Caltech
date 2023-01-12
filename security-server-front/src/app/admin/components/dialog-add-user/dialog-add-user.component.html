@@ -24,14 +24,14 @@
 
     <mat-form-field hintLabel="Min 3 - Max 15 char" appearance="fill">
       <mat-label>Enter a username</mat-label>
-      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Doug" [formControl]="userForm.controls.username" required aria-label="input username">
+      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Dougy" [formControl]="userForm.controls.username" required aria-label="input username">
       <mat-hint align="end">{{input.value.length}}/15</mat-hint>
       <mat-error *ngIf="userForm.controls.username.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input formcontrolname="email" matInput placeholder="doug@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
+      <input formcontrolname="email" matInput placeholder="diego@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
       <mat-error *ngIf="userForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
   </div>

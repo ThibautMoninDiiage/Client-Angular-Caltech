@@ -57,4 +57,16 @@ export class ApplicationListComponent implements OnInit {
   onCreate() {
     const dialogRef = this.dialog.open(DialogAddApplicationComponent);
   }
+
+  openDialog() {
+   // const dialogRef = this.dialog.open(DialogAddUserComponent);
+    
+    // dialogRef.afterClosed().subscribe(
+    //   data => { this._userService.getUsers().subscribe(users => {
+    //     this.dataSource = new MatTableDataSource(users);
+    //     this.dataSource.sort = this.sort;
+    //     this.dataSource.paginator = this.paginator;
+    //   });}
+    // );  
+  }
 }
