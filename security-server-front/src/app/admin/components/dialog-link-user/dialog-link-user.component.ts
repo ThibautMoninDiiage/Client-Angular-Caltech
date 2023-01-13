@@ -34,13 +34,8 @@ export class DialogLinkUserComponent {
 
   ngOnInit() {
     this.roles$ = this._userService.getRoles();
-    //this.users$ = this._applicationService.getUserNotInApp(this.data);
-
-    // this.filteredOptions$ = this.myControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map(value => this._filter(value || '')),
-    // );
-
+    this.users$ = this._applicationService.getUserNotInApp(this.data);
+    console.log(this.data+ ' id de app');
 
     this.users$.subscribe(users => {this.users = users as User[];});
 
@@ -71,7 +66,7 @@ export class DialogLinkUserComponent {
 
       }
       console.log('Profile form data :: ', this.userAppRole);
-      //await firstValueFrom(this._applicationService.postUserAppRole(this.userAppRole));
+      await firstValueFrom(this._userService.addUserToApp(this.userAppRole));
 
 
       this.dialogRef.close(this.userAppRole);

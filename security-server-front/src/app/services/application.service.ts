@@ -24,12 +24,12 @@ export class ApplicationService {
     return this._httpClient.post<Application>(`${Constants.baseUrl}/${Constants.applicationEndpoint}`, application)
   }
 
-  getUserByAppid(appId: number): Observable<User[]> {
-    return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/aledun/${appId}`);
-   }
+  // getUserByAppid(appId: number): Observable<User[]> {
+  //   return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/aledun/${appId}`);
+  //  } Si le temps pour optimisation de requête 
 
    getUserNotInApp(appId: number): Observable<User[]> {
-    return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/aleddeux/${appId}`);
+    return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/users/${appId}`);
    }
 
 }

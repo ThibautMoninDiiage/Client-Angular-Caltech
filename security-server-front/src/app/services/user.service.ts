@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Role } from '../models/role.interface';
 import { User } from "../models/user.interface"
+import { UserAppRole } from '../models/userAppRole.interface';
 import Constants from '../utils/constants';
 
 @Injectable({
@@ -29,4 +30,10 @@ export class UserService {
     let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
      return this._http.post<User>(`${Constants.baseUrl}/panelAdmin`, user,{ headers });
   }
+
+  addUserToApp(userAppRole: UserAppRole): Observable<boolean> {
+    let headers = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
+    return this._http.post<boolean>(`${Constants.baseUrl}/users/AddUser`,userAppRole,{ headers});
+  }
+  
 }

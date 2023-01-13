@@ -5,7 +5,6 @@ import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { User } from '../../../models/user.interface';
-//import { map, Observable } from 'rxjs';
 import { UserService } from '../../../services/user.service';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
