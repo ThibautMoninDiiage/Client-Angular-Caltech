@@ -15,14 +15,15 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>User Mail</mat-label>
-      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <input type="text" formcontrolname="userMail" matInput [formControl]="userForm.controls.userMail" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let user of filteredOptions$ | async" [value]="users">
+        <mat-option *ngFor="let user of filteredOptions$ | async" [value]="user">
           {{user.mail}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </div>
+
 
 </mat-dialog-content>
   <mat-dialog-actions align="end">

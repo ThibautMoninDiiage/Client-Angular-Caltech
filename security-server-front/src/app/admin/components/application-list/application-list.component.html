@@ -12,6 +12,15 @@
       <td mat-cell *matCellDef="let application"> {{application[column]}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="modification">
+      <th mat-header-cell *matHeaderCellDef >Action</th>
+      <td mat-cell *matCellDef="let application" > 
+        <button  mat-icon-button aria-label="delete icon" (click)="deleteApp(application.id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="expand">
       <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
       <td mat-cell *matCellDef="let application">
@@ -30,8 +39,9 @@
               Add User to App 
             </button>
              <div class="application-description">
-            {{application.description}}
-            <mat-label *ngFor="let user of application.users" >{{user.username}} : {{user.role.name}}</mat-label>
+            User List :
+            <br>
+            <mat-label *ngFor="let user of application.users" >{{user.username}} : {{user.role.name}}<br></mat-label>
           </div>
         </div>
       </td>
@@ -40,7 +50,7 @@
     <tr mat-row *matRowDef="let application; columns: columnsToDisplayWithExpand;"
         class="application-row"
         [class.example-expanded-row]="expandedElement === application"
-        (click)="expandedElement = expandedElement === application ? null : application">
+       >
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="application-detail-row"></tr>
 

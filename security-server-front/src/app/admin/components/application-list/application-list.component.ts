@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { firstValueFrom } from 'rxjs';
 import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
 import { User } from 'src/app/models/user.interface';
@@ -29,7 +30,7 @@ export class ApplicationListComponent implements OnInit {
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
   displayedColumns: string[] = ['id','name', 'description', 'url']
-  columnsToDisplayWithExpand = [...this.displayedColumns, 'expand']
+  columnsToDisplayWithExpand = [...this.displayedColumns,'modification', 'expand']
   expandedElement?: Application
 
   @ViewChild(MatSort) sort!: MatSort
@@ -38,13 +39,7 @@ export class ApplicationListComponent implements OnInit {
   constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this._applicationService.getApplications()
-      .subscribe(results => {
-        this.applications = results
-        this.dataSource = new MatTableDataSource(this.applications)
-        this.dataSource.sort = this.sort
-        this.dataSource.paginator = this.paginator
-      })
+    this.getApps()
   }
 
   announceSortChange(sortState: Sort) {
@@ -59,13 +54,7 @@ export class ApplicationListComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddApplicationComponent)
 
     dialogRef.afterClosed().subscribe(data => {
-      this._applicationService.getApplications()
-      .subscribe(results => {
-        this.applications = results
-        this.dataSource = new MatTableDataSource(this.applications)
-        this.dataSource.sort = this.sort
-        this.dataSource.paginator = this.paginator
-      })
+      this.getApps();
     })
   }
 
@@ -75,13 +64,23 @@ export class ApplicationListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      this._applicationService.getApplications()
+      this.getApps();
+    })
+  }
+
+  async deleteApp(appId: number) {
+    await firstValueFrom(this._applicationService.deleteApp(appId));
+
+    this.getApps();
+  }
+
+  private getApps(){
+    this._applicationService.getApplications()
       .subscribe(results => {
         this.applications = results
         this.dataSource = new MatTableDataSource(this.applications)
         this.dataSource.sort = this.sort
         this.dataSource.paginator = this.paginator
       })
-    })
   }
 }

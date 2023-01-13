@@ -16,30 +16,34 @@ import { User } from 'src/app/models/user.interface';
   templateUrl: './dialog-link-user.component.html',
   styleUrls: ['./dialog-link-user.component.scss']
 })
-export class DialogLinkUserComponent {
+export class DialogLinkUserComponent implements OnInit {
   hide = true;
-  myControl = new FormControl<string | User>('');
+  //myControl = new FormControl<string | User>('');
   userAppRole! :UserAppRole;
   roles$!: Observable<Role[]>;
-  users$!: Observable<User[]>;
+  // users$!: Observable<User[]>;
   filteredOptions$!: Observable<User[]>;
-  users! : User[];
+  users: User[] = [];
 
   userForm = this.formBuilder.group({
   role: new FormControl(''),
+  userMail: new FormControl<string | User>('')
 
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: number, private formBuilder: FormBuilder,private _userService: UserService,private _applicationService: ApplicationService,private dialogRef: MatDialogRef<DialogLinkUserComponent>) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.roles$ = this._userService.getRoles();
-    this.users$ = this._applicationService.getUserNotInApp(this.data);
+    this._applicationService.getUserNotInApp(this.data).subscribe(res => { this.users = res; console.log(res);});
     console.log(this.data+ ' id de app');
+    // this.users$.subscribe(res => console.log(res));
 
-    this.users$.subscribe(users => {this.users = users as User[];});
+    // this.users$.subscribe(res => this.users = res as User[]);
+    
+    console.log(this.users);
 
-    this.filteredOptions$ = this.myControl.valueChanges.pipe(
+    this.filteredOptions$ = this.userForm.controls.userMail.valueChanges.pipe(
       startWith(''),
       map(value => {
         const mail = typeof value === 'string' ? value : value?.mail;
@@ -59,10 +63,13 @@ export class DialogLinkUserComponent {
 
   async onSubmit() {
     if(this.userForm.valid){
+      // var test = this.userForm.value.userMail as User;
+      // console.log(test);
+      // console.log(this.userForm.value.userMail);
       this.userAppRole = {
         role: {name: this.userForm.value.role as string},
-        idUser: 1,
-        idApplication: this.data
+        userId: (this.userForm.value.userMail as User).id!,
+        applicationId: this.data
 
       }
       console.log('Profile form data :: ', this.userAppRole);

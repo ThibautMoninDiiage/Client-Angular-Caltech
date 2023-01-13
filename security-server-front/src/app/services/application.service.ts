@@ -29,7 +29,10 @@ export class ApplicationService {
   //  } Si le temps pour optimisation de requête 
 
    getUserNotInApp(appId: number): Observable<User[]> {
-    return this._httpClient.get<User[]>(`${Constants.baseUrl}//${Constants.applicationEndpoint}/users/${appId}`);
+    return this._httpClient.get<User[]>(`${Constants.baseUrl}/${Constants.applicationEndpoint}/users/${appId}`);
    }
 
+   deleteApp(appId: number): Observable<boolean> {
+    return this._httpClient.delete<boolean>(`${Constants.baseUrl}/${Constants.applicationEndpoint}/${appId}`);
+   }
 }
