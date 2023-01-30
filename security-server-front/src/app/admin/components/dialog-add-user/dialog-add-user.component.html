@@ -24,14 +24,14 @@
 
     <mat-form-field hintLabel="Min 3 - Max 15 char" appearance="fill">
       <mat-label>Enter a username</mat-label>
-      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Doug" [formControl]="userForm.controls.username" required aria-label="input username">
+      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Dougy" [formControl]="userForm.controls.username" required aria-label="input username">
       <mat-hint align="end">{{input.value.length}}/15</mat-hint>
       <mat-error *ngIf="userForm.controls.username.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input formcontrolname="email" matInput placeholder="doug@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
+      <input formcontrolname="email" matInput placeholder="diego@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
       <mat-error *ngIf="userForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
   </div>
@@ -58,9 +58,17 @@
   <div class="row">
     <mat-form-field appearance="fill">
       <mat-label>User role</mat-label>
-      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role">
+      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role" required>
         <ng-container *ngIf="roles$ | async as roles; else loading">
           <mat-option *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select an app</mat-label>
+      <mat-select formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application" required>
+        <ng-container *ngIf="apps$ | async as apps; else loading">
+          <mat-option *ngFor="let app of apps" value="{{app.id}}">{{app.name}}</mat-option>
         </ng-container>
       </mat-select>
     </mat-form-field>

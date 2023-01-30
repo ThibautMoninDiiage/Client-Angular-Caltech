@@ -8,6 +8,7 @@
   </mat-card-header>
   <mat-card-content class="card-content">
     <!-- <mat-label>Rôle : {{user.role.name}}</mat-label> -->
+      <mat-label *ngFor="let application of user.applications" >{{application.name}} : {{application.role?.name}}</mat-label>
     <mat-label>Firstname : {{user.firstname}}</mat-label>
     <mat-label>Lastname : {{user.lastname}}</mat-label>
   </mat-card-content>
