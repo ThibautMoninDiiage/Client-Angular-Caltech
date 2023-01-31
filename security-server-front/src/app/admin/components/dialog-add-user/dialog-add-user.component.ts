@@ -60,7 +60,7 @@ export class DialogAddUserComponent implements OnInit {
         lastname: this.userForm.value.lastname as string,
         idApplication: this.userForm.value.application as unknown as number
       }
-      console.log('Profile form data :: ', this.user);
+      
       await firstValueFrom(this._userService.postUser(this.user));
 
 
