@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Add user To this App</h2>
+<form [formGroup]="userForm" #ngForm="ngForm"  class="form-container">
+<mat-dialog-content class="mat-typography">
+  <span *ngIf="ngForm.submitted && !userForm.valid" class="small-font"
+  [ngClass]="{'invalid': ngForm.submitted }">* required</span>
+
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>User role</mat-label>
+      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role" required>
+        <ng-container *ngIf="roles$ | async as roles; else loading">
+          <mat-option *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>User Mail</mat-label>
+      <input type="text" formcontrolname="userMail" matInput [formControl]="userForm.controls.userMail" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let user of filteredOptions$ | async" [value]="user">
+          {{user.mail}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+
+</mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-raised-button mat-dialog-close aria-label="button close dialog">Cancel</button>
+    <button mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">Create</button>
+  </mat-dialog-actions>
+</form>
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

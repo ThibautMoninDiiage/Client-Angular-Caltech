@@ -1,0 +1,52 @@
+table {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.avatar-image{
+  border-radius: 50%; 
+  width: 100px;
+  height : 75px;
+}
+
+.bottom-box{
+  display: flex;
+  padding: 2%;
+  
+}
+
+tr.application-detail-row {
+  height: 0;
+}
+
+tr.application-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.application-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.application-row td {
+  border-bottom-width: 0;
+}
+
+.application-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.application-description {
+  padding: 16px;
+}
+
+.application-link-attribution {
+  opacity: 0.5;
+}

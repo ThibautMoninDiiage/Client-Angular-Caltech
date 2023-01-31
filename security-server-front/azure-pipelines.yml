@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- prÃ©-prod
+- pré-prod
 
 pool:
   vmImage: ubuntu-latest
@@ -27,3 +27,4 @@ steps:
     targetPath: '$(Build.SourcesDirectory)/security-server-front/dist'
     artifact: 'dist'
     publishLocation: 'pipeline'
+

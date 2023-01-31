@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>New application</h2>
+
+<form [formGroup]="applicationForm" #ngForm="ngForm" class="form-container">
+
+  <mat-dialog-content class="mat-typography">
+    <span *ngIf="ngForm.submitted && !applicationForm.valid" class="small-font"
+      [ngClass]="{'invalid': ngForm.submitted }">* required</span>
+
+    <div class="row">
+      <mat-form-field hintLabel="Min 3 - Max 15 char" appearance="fill">
+        <mat-label>Application name</mat-label>
+        <input aria-label="Application name input" formcontrolname="name" matInput #input maxlength="15"
+          placeholder="Google" [formControl]="applicationForm.controls.name" required>
+        <mat-hint align="end">{{input.value.length}}/15</mat-hint>
+        <mat-error *ngIf="applicationForm.controls.name.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Application description</mat-label>
+        <input aria-label="Application description input" formcontrolname="description" matInput placeholder="Google is..."
+          [formControl]="applicationForm.controls.description" required>
+        <mat-error *ngIf="applicationForm.controls.description.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field hintLabel="Use an URL" appearance="fill">
+        <mat-label>Application URL</mat-label>
+        <input aria-label="Application url input" formcontrolname="url" matInput #input
+          placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          [formControl]="applicationForm.controls.url" required>
+        <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="applicationForm.controls.url.hasError('pattern')">
+          Url Pattern Invalid
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Use an URI" appearance="fill">
+        <mat-label>Redirection URI</mat-label>
+        <input aria-label="Application uri input" formcontrolname="redirectUri" matInput #input
+          placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          [formControl]="applicationForm.controls.redirectUri" required>
+        <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="applicationForm.controls.url.hasError('pattern')">
+          Url Pattern Invalid
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-form-field hintLabel="Use an URI" appearance="fill">
+    <mat-label>Redirection URI</mat-label>
+    <input aria-label="Application uri input" formcontrolname="redirectUri" matInput #input
+      placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
+      [formControl]="applicationForm.controls.redirectUri" required>
+    <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="applicationForm.controls.url.hasError('pattern')">
+      Url Pattern Invalid
+    </mat-error>
+  </mat-form-field>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-raised-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Create</button>
+  </mat-dialog-actions>
+
+</form>
