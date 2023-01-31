@@ -48,17 +48,6 @@
     </div>
   </mat-dialog-content>
 
-  <mat-form-field hintLabel="Use an URI" appearance="fill">
-    <mat-label>Redirection URI</mat-label>
-    <input aria-label="Application uri input" formcontrolname="redirectUri" matInput #input
-      placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg"
-      [formControl]="applicationForm.controls.redirectUri" required>
-    <mat-error *ngIf="applicationForm.controls.url.invalid">{{getErrorMessage()}}</mat-error>
-    <mat-error *ngIf="applicationForm.controls.url.hasError('pattern')">
-      Url Pattern Invalid
-    </mat-error>
-  </mat-form-field>
-
   <mat-dialog-actions align="end">
     <button mat-button mat-raised-button mat-dialog-close>Cancel</button>
     <button mat-button mat-raised-button color="primary" (click)="onSubmit()" cdkFocusInitial>Create</button>
