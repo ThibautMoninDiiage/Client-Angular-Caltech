@@ -40,4 +40,8 @@ export class UserService {
     return this._http.delete<boolean>(`${Constants.baseUrl}/users/${userId}`);
   }
 
+  putUser(application: User): Observable<User> {
+    return this._http.put<User>(`${Constants.baseUrl}/users`, application)
+  }
+
 }

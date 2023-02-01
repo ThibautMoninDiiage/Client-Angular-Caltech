@@ -12,7 +12,7 @@ import { Application } from '../../../models/application.interface';
   styleUrls: ['./dialog-add-application.component.scss']
 })
 
-export class DialogAddApplicationComponent {
+export class DialogAddApplicationComponent implements OnInit {
 
   hide = true;
   application!: Application;
@@ -34,7 +34,7 @@ export class DialogAddApplicationComponent {
         this.applicationForm.setValue({
           name: this.data.name,
           description: this.data.description,
-          url: this.data.url,
+          url: this.data.url
         });
     }
   }
