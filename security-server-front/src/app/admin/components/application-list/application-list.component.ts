@@ -39,23 +39,24 @@ export class ApplicationListComponent implements OnInit {
   constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getApps()
+    this.getApps();
   }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`)
-    } else {
+    } 
+    else {
       this._liveAnnouncer.announce('Sorting cleared')
     }
   }
 
   onCreate() {
-    const dialogRef = this.dialog.open(DialogAddApplicationComponent)
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent,{data: null})
 
     dialogRef.afterClosed().subscribe(data => {
       this.getApps();
-    })
+    });
   }
 
   openDialog(appId: number) {
@@ -65,13 +66,25 @@ export class ApplicationListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(data => {
       this.getApps();
-    })
+    });
   }
 
   async deleteApp(appId: number) {
     await firstValueFrom(this._applicationService.deleteApp(appId));
 
     this.getApps();
+  }
+
+  async editApp(application: Application) {
+
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent, {
+      data: application
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      this.getApps();
+    });
+
   }
 
   private getApps(){
@@ -81,6 +94,6 @@ export class ApplicationListComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.applications)
         this.dataSource.sort = this.sort
         this.dataSource.paginator = this.paginator
-      })
+      });
   }
 }

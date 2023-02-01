@@ -1,13 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { firstValueFrom, map, Observable, startWith } from 'rxjs';
-import { Application } from 'src/app/models/application.interface';
 import { Role } from '../../../models/role.interface';
 import { UserService } from '../../../services/user.service';
 import { ApplicationService } from '../../../services/application.service';
 import { UserAppRole } from 'src/app/models/userAppRole.interface';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { User } from 'src/app/models/user.interface';
 
 
