@@ -34,13 +34,8 @@ export class DialogLinkUserComponent implements OnInit {
   async ngOnInit() {
     this.roles$ = this._userService.getRoles();
     this._applicationService.getUserNotInApp(this.data).subscribe(res => { this.users = res; console.log(res);});
-    console.log(this.data+ ' id de app');
-    // this.users$.subscribe(res => console.log(res));
 
     // this.users$.subscribe(res => this.users = res as User[]);
-    
-    console.log(this.users);
-
     this.filteredOptions$ = this.userForm.controls.userMail.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -61,16 +56,12 @@ export class DialogLinkUserComponent implements OnInit {
 
   async onSubmit() {
     if(this.userForm.valid){
-      // var test = this.userForm.value.userMail as User;
-      // console.log(test);
-      // console.log(this.userForm.value.userMail);
       this.userAppRole = {
         role: {name: this.userForm.value.role as string},
         userId: (this.userForm.value.userMail as User).id!,
         applicationId: this.data
 
       }
-      console.log('Profile form data :: ', this.userAppRole);
       await firstValueFrom(this._userService.addUserToApp(this.userAppRole));
 
 
