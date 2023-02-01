@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { User } from '../../../models/user.interface';
 import { UserService } from '../../../services/user.service';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-admin-panel',
@@ -25,11 +26,15 @@ export class AdminPanelComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  private getUsers() {
     this._userService.getUsers().subscribe(users => {
-         this.dataSource = new MatTableDataSource(users);
-         this.dataSource.sort = this.sort;
-         this.dataSource.paginator = this.paginator;
-       });
+      this.dataSource = new MatTableDataSource(users);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   announceSortChange(sortState: Sort) {
@@ -50,6 +55,12 @@ export class AdminPanelComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       });}
     );  
+  }
+
+  async deleteUser(userId: number) {
+    await firstValueFrom(this._userService.deleteUser(userId));
+
+    this.getUsers();
   }
 
 }

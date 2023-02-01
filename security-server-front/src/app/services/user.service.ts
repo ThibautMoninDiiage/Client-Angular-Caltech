@@ -36,4 +36,8 @@ export class UserService {
     return this._http.post<boolean>(`${Constants.baseUrl}/users/AddUser`,userAppRole,{ headers});
   }
   
+  deleteUser(userId: number): Observable<boolean> {
+    return this._http.delete<boolean>(`${Constants.baseUrl}/users/${userId}`);
+  }
+
 }

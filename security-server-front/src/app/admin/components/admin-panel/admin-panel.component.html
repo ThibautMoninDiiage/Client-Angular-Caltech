@@ -48,7 +48,7 @@
         <button  mat-icon-button aria-label="edit icon">
           <mat-icon>description</mat-icon>
         </button>
-        <button  mat-icon-button aria-label="delete icon" >
+        <button  mat-icon-button aria-label="delete icon" (click)="deleteUser(element.id)">
           <mat-icon>delete_forever</mat-icon>
         </button>
       </td>
