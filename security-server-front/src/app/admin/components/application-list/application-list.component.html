@@ -15,7 +15,7 @@
     <ng-container matColumnDef="modification">
       <th mat-header-cell *matHeaderCellDef >Action</th>
       <td mat-cell *matCellDef="let application"> 
-        <button  mat-icon-button aria-label="delete icon" (click)="deleteApp(application.id)">
+        <button  mat-icon-button aria-label="delete icon" (click)="deleteApp(application)">
           <mat-icon>delete_forever</mat-icon>
         </button>
       </td>

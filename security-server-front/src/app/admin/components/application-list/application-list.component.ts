@@ -10,6 +10,7 @@ import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-a
 import { Application } from 'src/app/models/application.interface'
 import { User } from 'src/app/models/user.interface';
 import { ApplicationService } from 'src/app/services/application.service';
+import { DeleteApplicationDialogComponent } from '../dialog-delete-application/dialog-delete-application.component';
 import { DialogLinkUserComponent } from '../dialog-link-user/dialog-link-user.component';
 
 @Component({
@@ -68,10 +69,12 @@ export class ApplicationListComponent implements OnInit {
     })
   }
 
-  async deleteApp(appId: number) {
-    await firstValueFrom(this._applicationService.deleteApp(appId));
+  async deleteApp(app: Application) {
+    const dialogRef = this.dialog.open(DeleteApplicationDialogComponent, {data : app});
 
-    this.getApps();
+    dialogRef.afterClosed().subscribe(data => {
+      this.getApps();
+    })
   }
 
   private getApps(){
