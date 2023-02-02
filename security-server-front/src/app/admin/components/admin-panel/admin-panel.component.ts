@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { User } from '../../../models/user.interface';
 import { UserService } from '../../../services/user.service';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
+import { filter, firstValueFrom, map } from 'rxjs';
 
 @Component({
   selector: 'app-admin-panel',
@@ -25,11 +26,15 @@ export class AdminPanelComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  private getUsers() {
     this._userService.getUsers().subscribe(users => {
-         this.dataSource = new MatTableDataSource(users);
-         this.dataSource.sort = this.sort;
-         this.dataSource.paginator = this.paginator;
-       });
+      this.dataSource = new MatTableDataSource(users);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   announceSortChange(sortState: Sort) {
@@ -44,12 +49,29 @@ export class AdminPanelComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogAddUserComponent);
     
     dialogRef.afterClosed().subscribe(
-      data => { this._userService.getUsers().subscribe(users => {
-        this.dataSource = new MatTableDataSource(users);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-      });}
-    );  
+      data => { this.getUsers();
+      });  
+  }
+
+  async deleteUser(userId: number) {
+    await firstValueFrom(this._userService.deleteUser(userId));
+
+    this.getUsers();
+  }
+
+  async editUser(user: User) {
+    const userDetail = await firstValueFrom(this._userService.getUserDetails(user.id!));
+    
+    const dialogRef = this.dialog.open(DialogAddUserComponent, {
+      data: userDetail
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      this.getUsers();
+    });
+
+    // const test = this._userService.getUsers().pipe(map(users => users.find(u => u.id === user.id)));
+    // test.subscribe(data => {console.log(data)});
   }
 
 }
