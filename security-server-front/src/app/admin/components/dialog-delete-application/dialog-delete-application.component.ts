@@ -15,6 +15,7 @@ export class DeleteApplicationDialogComponent implements OnInit{
   hide = true;
   readyToDelete=false;
   primaryButtonVisual = "disabled";
+  componentReadyToWork = false;
 
   deleteForm = this.formBuilder.group({
     confirm : new FormControl('')
@@ -23,12 +24,11 @@ export class DeleteApplicationDialogComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data : Application,private _applicationService : ApplicationService, private formBuilder: FormBuilder, private dialogRef : MatDialogRef<DeleteApplicationDialogComponent>) {}
   
   ngOnInit(): void {
-    var componentReadyToWork = false;
     if(this.data != null)
-      componentReadyToWork = this.data.name != null && this.data.id != null
+      this.componentReadyToWork = this.data.name != null && this.data.id != null
     ;
 
-    if(componentReadyToWork){
+    if(this.componentReadyToWork){
       this.deleteForm.valueChanges.subscribe(form => this.canDeleteCheck());  //Every time the form is updated, fire delete check
     }
     else{
