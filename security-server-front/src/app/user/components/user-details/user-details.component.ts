@@ -17,8 +17,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userhttp$ = this._userService.getUserDetails(29);
-    this.userhttp$.subscribe(res => console.log(res));
+    this.userhttp$ = this._userService.getUserDetails(8)
   }
 
 }

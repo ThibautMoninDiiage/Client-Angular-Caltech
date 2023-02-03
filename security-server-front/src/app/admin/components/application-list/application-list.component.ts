@@ -5,10 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { firstValueFrom } from 'rxjs';
 import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
-import { User } from 'src/app/models/user.interface';
 import { ApplicationService } from 'src/app/services/application.service';
 import { DeleteApplicationDialogComponent } from '../dialog-delete-application/dialog-delete-application.component';
 import { DialogLinkUserComponent } from '../dialog-link-user/dialog-link-user.component';
@@ -30,7 +28,7 @@ export class ApplicationListComponent implements OnInit {
 
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
-  displayedColumns: string[] = ['id','name', 'description', 'url']
+  displayedColumns: string[] = ['id','name', 'description', 'secretCode' ,'url']
   columnsToDisplayWithExpand = [...this.displayedColumns,'modification', 'expand']
   expandedElement?: Application
 
@@ -94,6 +92,7 @@ export class ApplicationListComponent implements OnInit {
     this._applicationService.getApplications()
       .subscribe(results => {
         this.applications = results
+        console.log(this.applications)
         this.dataSource = new MatTableDataSource(this.applications)
         this.dataSource.sort = this.sort
         this.dataSource.paginator = this.paginator
