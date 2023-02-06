@@ -2,9 +2,9 @@ import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { AboutDirective } from './about.directive';
 import { AboutItem } from './about-item';
-import { AboutComponent } from './about.component';
 import { TimerHandle } from 'rxjs/internal/scheduler/timerHandle';
 import { AboutService } from './about.service';
+import { About } from '../models/about.interface';
 
 @Component({
   selector: 'app-ad-banner',
@@ -44,8 +44,11 @@ export class AboutBannerComponent implements OnInit, OnDestroy {
 
     viewContainerRef.clear();
 
-    const componentRef = viewContainerRef.createComponent<AboutComponent>(adItem.component);
-    componentRef.instance.data = adItem.data;
+    const componentRef = viewContainerRef.createComponent<About>(adItem.component);
+    componentRef.instance.bio = adItem.data.bio;
+    componentRef.instance.body = adItem.data.body;
+    componentRef.instance.headline = adItem.data.headline;
+    componentRef.instance.name = adItem.data.name;
   }
 
   getAds() {
