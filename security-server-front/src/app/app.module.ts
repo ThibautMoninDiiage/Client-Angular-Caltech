@@ -11,15 +11,13 @@ import { LottieModule } from 'ngx-lottie';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SharedModule } from './shared/shared.module';
-import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NotfoundComponent,
-    AboutComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +29,7 @@ import { AboutComponent } from './about/about.component';
     FormsModule,
     ReactiveFormsModule,
     LottieModule.forRoot({ player: playerFactory }),
-    SharedModule,
-
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
