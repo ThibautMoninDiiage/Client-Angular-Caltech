@@ -1,5 +1,8 @@
-import { User } from "./user.interface";
-
-export interface UserDTO extends User {
-  token: string
+export interface UserDTO {
+  id: number,
+	firstname: string,
+	lastname: string,
+	username: string,
+	mail: string,
+	token: string
 }
