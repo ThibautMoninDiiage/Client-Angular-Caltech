@@ -1,13 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { firstValueFrom, map, Observable, startWith } from 'rxjs';
-import { Application } from 'src/app/models/application.interface';
 import { Role } from '../../../models/role.interface';
 import { UserService } from '../../../services/user.service';
 import { ApplicationService } from '../../../services/application.service';
 import { UserAppRole } from 'src/app/models/userAppRole.interface';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { User } from 'src/app/models/user.interface';
 
 
@@ -35,11 +33,9 @@ export class DialogLinkUserComponent implements OnInit {
 
   async ngOnInit() {
     this.roles$ = this._userService.getRoles();
-    this._applicationService.getUserNotInApp(this.data).subscribe(res => { this.users = res});
+    this._applicationService.getUserNotInApp(this.data).subscribe(res => { this.users = res; console.log(res);});
 
     // this.users$.subscribe(res => this.users = res as User[]);
-    
-
     this.filteredOptions$ = this.userForm.controls.userMail.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -60,15 +56,12 @@ export class DialogLinkUserComponent implements OnInit {
 
   async onSubmit() {
     if(this.userForm.valid){
-      // var test = this.userForm.value.userMail as User;
-      
       this.userAppRole = {
         role: {name: this.userForm.value.role as string},
         userId: (this.userForm.value.userMail as User).id!,
         applicationId: this.data
 
       }
-      
       await firstValueFrom(this._userService.addUserToApp(this.userAppRole));
 
 

@@ -9,10 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApplicationListComponent } from './components/application-list/application-list.component';
 import { DialogAddApplicationComponent } from './components/dialog-add-application/dialog-add-application.component';
 import { DialogLinkUserComponent } from './components/dialog-link-user/dialog-link-user.component';
+import { DeleteApplicationDialogComponent } from './components/dialog-delete-application/dialog-delete-application.component';
 
 
 @NgModule({
-  declarations: [AdminPanelComponent, DialogAddUserComponent, ApplicationListComponent,DialogAddApplicationComponent,DialogAddApplicationComponent, DialogLinkUserComponent],
+  declarations: [AdminPanelComponent, DialogAddUserComponent, ApplicationListComponent, DialogAddApplicationComponent, DeleteApplicationDialogComponent, DialogAddApplicationComponent, DialogLinkUserComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

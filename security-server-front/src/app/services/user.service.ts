@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Role } from '../models/role.interface';
@@ -36,4 +36,12 @@ export class UserService {
     return this._http.post<boolean>(`${Constants.baseUrl}/users/AddUser`,userAppRole,{ headers});
   }
   
+  deleteUser(userId: number): Observable<boolean> {
+    return this._http.delete<boolean>(`${Constants.baseUrl}/users/${userId}`);
+  }
+
+  putUser(application: User): Observable<User> {
+    return this._http.put<User>(`${Constants.baseUrl}/users`, application)
+  }
+
 }

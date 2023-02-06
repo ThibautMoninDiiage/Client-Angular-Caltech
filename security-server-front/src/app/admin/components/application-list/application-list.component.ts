@@ -5,11 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { firstValueFrom } from 'rxjs';
 import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
-import { User } from 'src/app/models/user.interface';
 import { ApplicationService } from 'src/app/services/application.service';
+import { DeleteApplicationDialogComponent } from '../dialog-delete-application/dialog-delete-application.component';
 import { DialogLinkUserComponent } from '../dialog-link-user/dialog-link-user.component';
 
 @Component({
@@ -29,7 +28,7 @@ export class ApplicationListComponent implements OnInit {
 
   applications!: Application[]
   dataSource!: MatTableDataSource<Application>
-  displayedColumns: string[] = ['id','name', 'description', 'url']
+  displayedColumns: string[] = ['id','name', 'description', 'secretCode' ,'url']
   columnsToDisplayWithExpand = [...this.displayedColumns,'modification', 'expand']
   expandedElement?: Application
 
@@ -39,23 +38,24 @@ export class ApplicationListComponent implements OnInit {
   constructor(private _liveAnnouncer: LiveAnnouncer, private _applicationService: ApplicationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getApps()
+    this.getApps();
   }
 
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`)
-    } else {
+    } 
+    else {
       this._liveAnnouncer.announce('Sorting cleared')
     }
   }
 
   onCreate() {
-    const dialogRef = this.dialog.open(DialogAddApplicationComponent)
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent,{data: null})
 
     dialogRef.afterClosed().subscribe(data => {
       this.getApps();
-    })
+    });
   }
 
   openDialog(appId: number) {
@@ -65,22 +65,37 @@ export class ApplicationListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(data => {
       this.getApps();
+    });
+  }
+
+  async deleteApp(app: Application) {
+    const dialogRef = this.dialog.open(DeleteApplicationDialogComponent, {data : app});
+
+    dialogRef.afterClosed().subscribe(data => {
+      this.getApps();
     })
   }
 
-  async deleteApp(appId: number) {
-    await firstValueFrom(this._applicationService.deleteApp(appId));
+  async editApp(application: Application) {
 
-    this.getApps();
+    const dialogRef = this.dialog.open(DialogAddApplicationComponent, {
+      data: application
+    });
+
+    dialogRef.afterClosed().subscribe(data => {
+      this.getApps();
+    });
+
   }
 
   private getApps(){
     this._applicationService.getApplications()
       .subscribe(results => {
         this.applications = results
+        console.log(this.applications)
         this.dataSource = new MatTableDataSource(this.applications)
         this.dataSource.sort = this.sort
         this.dataSource.paginator = this.paginator
-      })
+      });
   }
 }

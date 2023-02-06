@@ -46,7 +46,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field hintLabel="Min 5 characters" appearance="fill">
+    <mat-form-field *ngIf="create" hintLabel="Min 5 characters" appearance="fill">
       <mat-label>Enter a password</mat-label>
       <input matInput formcontrolname="password" [type]="hide ? 'password' : 'text'" [formControl]="userForm.controls.password" required aria-label="input password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -56,7 +56,7 @@
     </mat-form-field>
   </div>  
   <div class="row">
-    <mat-form-field appearance="fill">
+    <mat-form-field *ngIf="create" appearance="fill">
       <mat-label>User role</mat-label>
       <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role" required>
         <ng-container *ngIf="roles$ | async as roles; else loading">
@@ -64,7 +64,7 @@
         </ng-container>
       </mat-select>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field *ngIf="create" appearance="fill">
       <mat-label>Select an app</mat-label>
       <mat-select formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application" required>
         <ng-container *ngIf="apps$ | async as apps; else loading">
@@ -76,7 +76,7 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-raised-button mat-dialog-close aria-label="button close dialog">Cancel</button>
-  <button mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">Create</button>
+  <button mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">{{labelButton}}</button>
 </mat-dialog-actions>
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>

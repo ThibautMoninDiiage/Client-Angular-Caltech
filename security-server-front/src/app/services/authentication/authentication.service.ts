@@ -16,8 +16,8 @@ export class AuthenticationService {
   constructor(private _http: HttpClient, private _router: Router) { }
 
   signIn(email: string, password: string) {
-    var url = ""
-    return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, url: url }).pipe(
+    const secret = "e7f84649-25e7-4bdd-856b-5682a0f52d58"
+    return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
       map(res => {
         this.getUserToken(res.urlGrant)
         this._router.navigateByUrl('/auth/?' + res.codeGrant)

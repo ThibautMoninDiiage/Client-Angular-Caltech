@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Removing an application</h2>
+<form [formGroup]="deleteForm">
+    <mat-dialog-content>
+        <p>Warning: you are deleting the application: '{{data.name}}'</p>
+        <p>If you are sure you wish to remove this application, write it's name below and click 'Delete'.</p>
+
+        <mat-form-field style="margin-top: 3%; margin-left: 35%; margin-right: 35%; width: 30%;" >
+            <mat-label>Application Name</mat-label>
+            <input matInput [formControl]="deleteForm.controls.confirm" placeholder="{{data.name}}" formControlName="confirm" type="text"/>
+        </mat-form-field>
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-raised-button (click)="cancel_clicked()">Cancel</button>
+            <button mat-button mat-raised-button color="{{primaryButtonVisual}}" name="deleteButton" (click)="delete_clicked()">Delete</button>
+        </mat-dialog-actions>
+    </mat-dialog-content>
+</form>
