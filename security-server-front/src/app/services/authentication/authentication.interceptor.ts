@@ -15,7 +15,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     // On récupère le token dans le local storage
-    const token = localStorage.getItem('access_token')
+    const token = sessionStorage.getItem('access_token')
 
     // Si le token existe, alors on clone et modifie la requête HTTP en passant le token dans le header
     if (token) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service'
 import jwt_decode from 'jwt-decode'
+import { Token } from 'src/app/models/token.interface'
 
 @Component({
   selector: 'app-toolbar',
@@ -15,7 +16,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     var token = this._authenticationService.getToken()
-    var decodedToken = jwt_decode(token)
+    var decodedToken: Token = jwt_decode(token)
   }
 
 }

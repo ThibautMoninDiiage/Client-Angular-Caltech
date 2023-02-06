@@ -1,11 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.interface';
 import Constants from '../../utils/constants';
 import { map, shareReplay } from 'rxjs';
 import { UserDTO } from '../../models/userDTO.model';
 import { Authentication } from 'src/app/models/authentication.interface';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +13,19 @@ import { environment } from 'src/environments/environment';
 
 export class AuthenticationService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _router: Router) { }
 
   signIn(email: string, password: string) {
     const secret = "e7f84649-25e7-4bdd-856b-5682a0f52d58"
     return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
       map(res => {
-        window.location.href = res.urlGrant
-        this.getUserToken(res.urlGrant)
+        this._router.navigateByUrl("/auth/" + res.codeGrant)
       }), shareReplay()
     )
   }
 
   getUserToken(codeGrant: string) {
-    const queryString = window.location.search
-    console.log(queryString)
-    
-    return this._http.post<UserDTO>(`${Constants.baseUrl}/AuthenticateGrant`, { codeGrant: "" }).pipe(
+    return this._http.post<UserDTO>(`${Constants.baseUrl}/authenticateGrant`, { codeGrant: codeGrant }).pipe(
       map(res => {
         this.setToken(res.token)
       }), shareReplay()
@@ -41,11 +37,11 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    return JSON.parse(localStorage.getItem('access_token')!)
+    return sessionStorage.getItem('access_token')!
   }
 
   setToken(token: string) {
-    localStorage.setItem('access_token', token)
+    sessionStorage.setItem('access_token', token)
   }
 
 }

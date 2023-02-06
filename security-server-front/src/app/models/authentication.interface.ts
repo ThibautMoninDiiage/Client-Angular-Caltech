@@ -1,3 +1,4 @@
 export interface Authentication {
-  urlGrant: string
+  codeGrant: string,
+  redirectUri: string
 }
