@@ -37,11 +37,11 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    return localStorage.getItem('access_token')!
+    return sessionStorage.getItem('access_token')!
   }
 
   setToken(token: string) {
-    localStorage.setItem('access_token', token)
+    sessionStorage.setItem('access_token', token)
   }
 
 }
