@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SharedModule } from './shared/shared.module';
 import { AboutComponent } from './about/about.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { AboutComponent } from './about/about.component';
     LoginComponent,
     NotfoundComponent,
     AboutComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
