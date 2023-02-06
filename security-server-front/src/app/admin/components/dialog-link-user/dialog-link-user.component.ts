@@ -69,4 +69,10 @@ export class DialogLinkUserComponent implements OnInit {
   
     }
   }
+  
+  onCancel() {
+    if(confirm('Are you sure you want to cancel the modifications ?')){
+      this.dialogRef.close();
+    }
+  }
 }

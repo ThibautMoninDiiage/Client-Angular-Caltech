@@ -97,4 +97,10 @@ export class DialogAddUserComponent implements OnInit {
       this.dialogRef.close(this.user);
     }
   }
+
+  onCancel() {
+    if(confirm('Are you sure you want to cancel the modifications ?')){
+      this.dialogRef.close();
+    }
+  }
 }
