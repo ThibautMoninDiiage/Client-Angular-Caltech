@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUserDetails(userId : number): Observable<User> { 
+  getUserDetails(userId : string): Observable<User> {
     return this.http.get<User>(`${Constants.baseUrl}/users/${userId}`);
    }
 
