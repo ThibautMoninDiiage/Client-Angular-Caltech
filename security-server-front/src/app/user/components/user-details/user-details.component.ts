@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import jwtDecode from 'jwt-decode';
 import { Observable} from 'rxjs';
-import { Role } from '../../../models/role.interface';
+import { Token } from 'src/app/models/token.interface';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { User } from '../../../models/user.interface';
 import { UserService } from '../../../services/user/user.service';
 
@@ -13,11 +15,13 @@ export class UserDetailsComponent implements OnInit {
 
   userhttp$! : Observable<User>;
 
-  constructor(private _userService: UserService) {
+  constructor(private _userService: UserService, private _authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
-    this.userhttp$ = this._userService.getUserDetails(8)
+    const token = this._authenticationService.getToken()
+    const decodedToken: Token = jwtDecode(token)
+    this.userhttp$ = this._userService.getUserDetails(decodedToken.idRole)
   }
 
 }
