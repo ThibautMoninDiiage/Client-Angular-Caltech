@@ -19,21 +19,15 @@ export class AuthenticationService {
     const secret = "e7f84649-25e7-4bdd-856b-5682a0f52d58"
     return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
       map(res => {
-        this.getUserToken(res.urlGrant)
-        this._router.navigateByUrl('/auth/?' + res.codeGrant)
+        this._router.navigateByUrl("/auth/" + res.codeGrant)
       }), shareReplay()
     )
   }
 
   getUserToken(codeGrant: string) {
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(codeGrant)
-    const code = urlParams.get("code")
-    
-    return this._http.post<UserDTO>(`${Constants.baseUrl}/authenticateGrant`, { codeGrant: "" }).pipe(
+    return this._http.post<UserDTO>(`${Constants.baseUrl}/authenticateGrant`, { codeGrant: codeGrant }).pipe(
       map(res => {
         this.setToken(res.token)
-        window.location.href = codeGrant
       }), shareReplay()
     )
   }
