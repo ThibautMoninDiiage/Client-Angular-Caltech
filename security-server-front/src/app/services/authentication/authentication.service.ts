@@ -37,7 +37,7 @@ export class AuthenticationService {
   }
 
   getToken(): string {
-    return JSON.parse(localStorage.getItem('access_token')!)
+    return localStorage.getItem('access_token')!
   }
 
   setToken(token: string) {
