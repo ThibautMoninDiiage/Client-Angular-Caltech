@@ -11,16 +11,13 @@ import { LottieModule } from 'ngx-lottie';
 import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SharedModule } from './shared/shared.module';
-import { AboutComponent } from './about/about.component';
 import { AuthComponent } from './auth/auth.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotfoundComponent,
-    AboutComponent,
     AuthComponent,
   ],
   imports: [
