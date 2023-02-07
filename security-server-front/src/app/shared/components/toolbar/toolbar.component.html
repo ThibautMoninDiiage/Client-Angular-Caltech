@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="'/home'" aria-label="button signOut">
+      <button mat-menu-item [routerLink]="'/home'" aria-label="button signOut" (click)="onSignOut()">
         <mat-icon>weekend</mat-icon>
         <span>Sign Out</span>
       </button>
@@ -24,4 +24,4 @@
       <mat-icon>person_outline</mat-icon>
     </button>
   </mat-toolbar>
-</p> 
+</p>

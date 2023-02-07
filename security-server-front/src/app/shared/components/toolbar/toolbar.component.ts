@@ -19,4 +19,8 @@ export class ToolbarComponent implements OnInit {
     var decodedToken: Token = jwt_decode(token)
   }
 
+  onSignOut() {
+    this._authenticationService.clearToken()
+  }
+
 }
