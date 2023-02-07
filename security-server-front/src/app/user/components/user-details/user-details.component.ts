@@ -21,7 +21,7 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit() {
     const token = this._authenticationService.getToken()
     const decodedToken: Token = jwtDecode(token)
-    this.userhttp$ = this._userService.getUserDetails(decodedToken.idRole)
+    this.userhttp$ = this._userService.getUserDetails(decodedToken.id)
   }
 
 }
