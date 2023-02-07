@@ -27,6 +27,7 @@ export class AuthenticationService {
   getUserToken(codeGrant: string) {
     return this._http.post<UserDTO>(`${Constants.baseUrl}/authenticateGrant`, { codeGrant: codeGrant }).pipe(
       map(res => {
+        this.clearToken()
         this.setToken(res.token)
       }), shareReplay()
     )
@@ -42,6 +43,10 @@ export class AuthenticationService {
 
   setToken(token: string) {
     sessionStorage.setItem('access_token', token)
+  }
+
+  clearToken() {
+    sessionStorage.clear()
   }
 
 }
