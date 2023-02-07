@@ -33,7 +33,7 @@ export class DialogLinkUserComponent implements OnInit {
 
   async ngOnInit() {
     this.roles$ = this._userService.getRoles();
-    this._applicationService.getUserNotInApp(this.data).subscribe(res => { this.users = res; console.log(res);});
+    this._applicationService.getUserNotInApp(this.data).subscribe(res => { this.users = res });
 
     // this.users$.subscribe(res => this.users = res as User[]);
     this.filteredOptions$ = this.userForm.controls.userMail.valueChanges.pipe(

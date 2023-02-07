@@ -71,7 +71,6 @@ export class AdminPanelComponent implements OnInit {
     });
 
     // const test = this._userService.getUsers().pipe(map(users => users.find(u => u.id === user.id)));
-    // test.subscribe(data => {console.log(data)});
   }
 
 }

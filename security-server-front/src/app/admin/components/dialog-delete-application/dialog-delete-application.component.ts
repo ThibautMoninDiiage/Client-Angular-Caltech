@@ -52,7 +52,6 @@ export class DeleteApplicationDialogComponent implements OnInit{
   
   canDeleteCheck(){
     this.readyToDelete = this.deleteForm.value.confirm == this.data.name
-    console.log("running delete check.")
   
     if(this.readyToDelete){
       this.primaryButtonVisual = "primary"
