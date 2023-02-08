@@ -8,18 +8,20 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '18.x'
-  displayName: 'Install Node.js'
+  displayName: 'Install Node.js 18.x'
 
 - script: |
     cd security-server-front
     npm install -g @angular/cli
     npm install
     npm run build
-  displayName: 'npm install and build'
+  displayName: 'Npm commands (angular, install, build)'
 
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.SourcesDirectory)/security-server-front/dist'
     artifact: 'dist'
     publishLocation: 'pipeline'
+  displayName: Publish pipeline artifact
 - task: QodanaScan@2022
+  displayName: Qodana
