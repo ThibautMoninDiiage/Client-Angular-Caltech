@@ -7,7 +7,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogAddApplicationComponent } from 'src/app/admin/components/dialog-add-application/dialog-add-application.component';
 import { Application } from 'src/app/models/application.interface'
-import { ApplicationService } from 'src/app/services/application.service';
+import { ApplicationService } from 'src/app/services/application/application.service';
 import { DeleteApplicationDialogComponent } from '../dialog-delete-application/dialog-delete-application.component';
 import { DialogLinkUserComponent } from '../dialog-link-user/dialog-link-user.component';
 
@@ -90,7 +90,7 @@ export class ApplicationListComponent implements OnInit {
 
   private getApps(){
     this._applicationService.getApplications()
-      .subscribe(results => {
+      .subscribe((results: Application[]) => {
         this.applications = results
         this.dataSource = new MatTableDataSource(this.applications)
         this.dataSource.sort = this.sort
