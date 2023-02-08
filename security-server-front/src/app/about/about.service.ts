@@ -20,11 +20,11 @@ export class AboutService {
       ),
       new AboutItem(
         JobAboutComponent,
-        { headline: 'New Info : ', body: 'I hate thibaut' }
+        { headline: 'New Info : ', body: `Today\'s date : 08/02/2023` }
       ),
       new AboutItem(
         JobAboutComponent,
-        { headline: 'New Info : ', body: 'Alexis go to work' }
+        { headline: 'New Info : ', body: 'It\'s beautiful' }
       )
     ];
   }
