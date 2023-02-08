@@ -20,7 +20,7 @@ export class AboutService {
       ),
       new AboutItem(
         JobAboutComponent,
-        { headline: 'New Info : ', body: `Today\'s date : 08/02/2023` }
+        { headline: 'New Info : ', body: `Today\'s date : ${new Date().toJSON()}` }
       ),
       new AboutItem(
         JobAboutComponent,
