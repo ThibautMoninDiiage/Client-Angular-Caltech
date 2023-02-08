@@ -1,13 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { firstValueFrom, map, Observable, startWith } from 'rxjs';
 import { Role } from '../../../models/role.interface';
-import { UserService } from '../../../services/user.service';
-import { ApplicationService } from '../../../services/application.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { ApplicationService } from 'src/app/services/application/application.service';
 import { UserAppRole } from 'src/app/models/userAppRole.interface';
 import { User } from 'src/app/models/user.interface';
-
 
 @Component({
   selector: 'app-dialog-link-user',

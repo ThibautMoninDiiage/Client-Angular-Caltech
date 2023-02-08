@@ -5,8 +5,8 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { Application } from 'src/app/models/application.interface';
 import { Role } from '../../../models/role.interface';
 import { User } from '../../../models/user.interface';
-import { UserService } from '../../../services/user.service';
-import { ApplicationService } from '../../../services/application.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { ApplicationService } from 'src/app/services/application/application.service';
 
 @Component({
   selector: 'app-dialog-add-user',

@@ -5,9 +5,9 @@ import {MatDialog} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import { User } from '../../../models/user.interface';
-import { UserService } from '../../../services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
-import { filter, firstValueFrom, map } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-admin-panel',
@@ -60,7 +60,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   async editUser(user: User) {
-    const userDetail = await firstValueFrom(this._userService.getUserDetails(user.id!));
+    const userDetail = await firstValueFrom(this._userService.getUserDetails(user.id!.toString()));
     
     const dialogRef = this.dialog.open(DialogAddUserComponent, {
       data: userDetail
