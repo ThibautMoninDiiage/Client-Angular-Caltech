@@ -1,14 +1,14 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon" aria-label="Menu icon-button">
+    <button id="toolbar-button" mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon" aria-label="Menu icon-button">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="'/home'" aria-label="button signOut" (click)="onSignOut()">
+      <button id="signout-button" mat-menu-item [routerLink]="'/home'" aria-label="button signOut" (click)="onSignOut()">
         <mat-icon>weekend</mat-icon>
         <span>Sign Out</span>
       </button>
-      <button mat-menu-item [routerLink]="'/admin/admin-panel'" arial-label="button navigate admin panel ">
+      <button id="toolbar-userlist-button" mat-menu-item [routerLink]="'/admin/admin-panel'" arial-label="button navigate admin panel ">
         <mat-icon>list_alt</mat-icon>
         <span>Users List</span>
       </button>
