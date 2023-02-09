@@ -1,6 +1,6 @@
 export default class Constants {
 
   public static applicationEndpoint: string = 'application'
-  public static baseUrl: string = "https://preprodfuncappgroupedeuxb2.azurewebsites.net/api"
+  public static baseUrl: string = "http://localhost:7275/api"
 
 }

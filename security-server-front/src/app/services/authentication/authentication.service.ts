@@ -22,7 +22,7 @@ export class AuthenticationService {
       return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
         map(res => {
           window.location.href = (res.redirectUri+"?code="+res.codeGrant)
-        })
+        }), shareReplay()
       )
     }
     else{
@@ -38,6 +38,7 @@ export class AuthenticationService {
   getUserToken(codeGrant: string) {
     return this._http.post<UserDTO>(`${Constants.baseUrl}/authenticateGrant`, { codeGrant: codeGrant }).pipe(
       map(res => {
+        window.location.href = res.urlRedirect
         this.clearToken()
         this.setToken(res.token)
       }), shareReplay()

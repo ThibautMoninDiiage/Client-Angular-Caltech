@@ -35,7 +35,7 @@ export class LoginComponent {
 
   onLogin() {
     if (this.form.value.email && this.form.value.password) {
-      this._authenticationService.signIn(this.form.value.email, this.form.value.password!)
+      this._authenticationService.signIn(this.form.value.email, this.form.value.password!).subscribe()
     }
   }
 
