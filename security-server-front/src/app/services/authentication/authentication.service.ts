@@ -5,7 +5,7 @@ import Constants from '../../utils/constants';
 import { map, shareReplay } from 'rxjs';
 import { UserDTO } from '../../models/userDTO.model';
 import { Authentication } from 'src/app/models/authentication.interface';
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +13,26 @@ import { Router } from '@angular/router'
 
 export class AuthenticationService {
 
-  constructor(private _http: HttpClient, private _router: Router) { }
+  constructor(private _http: HttpClient, private _router: Router,private _route:ActivatedRoute) { }
 
   signIn(email: string, password: string) {
-    const secret = "e7f84649-25e7-4bdd-856b-5682a0f52d58"
-    return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
-      map(res => {
-        this._router.navigateByUrl("/auth/" + res.codeGrant)
-      }), shareReplay()
-    )
+
+    var secret = this._route.snapshot.queryParamMap.get("secret");
+    if(secret != null){
+      return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
+        map(res => {
+          window.location.href = (res.redirectUri+"?code="+res.codeGrant)
+        })
+      )
+    }
+    else{
+      secret = "e7f84649-25e7-4bdd-856b-5682a0f52d58"
+      return this._http.post<Authentication>(`${Constants.baseUrl}/signin`, { mail: email, password: password, secretCode: secret }).pipe(
+        map(res => {
+          window.location.href = (res.redirectUri+"?code="+res.codeGrant)
+        }), shareReplay()
+      )
+    }
   }
 
   getUserToken(codeGrant: string) {

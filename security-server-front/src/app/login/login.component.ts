@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { AnimationOptions } from 'ngx-lottie'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AuthenticationService } from '../services/authentication/authentication.service'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent {
   }
   form!: FormGroup
 
-  constructor(private _formBuilder: FormBuilder, private _authenticationService: AuthenticationService, private _router: Router) {
+  constructor(private _formBuilder: FormBuilder, private _authenticationService: AuthenticationService, private _router: Router,private _route:ActivatedRoute) {
     this.form = this._formBuilder.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, Validators.required]
@@ -36,7 +36,6 @@ export class LoginComponent {
   onLogin() {
     if (this.form.value.email && this.form.value.password) {
       this._authenticationService.signIn(this.form.value.email, this.form.value.password!)
-        .subscribe()
     }
   }
 
