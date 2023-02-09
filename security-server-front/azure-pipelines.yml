@@ -17,7 +17,7 @@ steps:
     npm run build
   displayName: 'Npm commands (angular, install, build)'
 
-- script: dir security-server-front
+- script: dir security-server-front/node_modules
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.SourcesDirectory)/security-server-front/dist'
