@@ -58,7 +58,7 @@ export class ApplicationListComponent implements OnInit {
     });
   }
 
-  openDialog(appId: number) {
+  openDialogToLinkUser(appId: number) {
     const dialogRef = this.dialog.open(DialogLinkUserComponent, {
       data: appId
     });
@@ -72,8 +72,12 @@ export class ApplicationListComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteApplicationDialogComponent, {data : app});
 
     dialogRef.afterClosed().subscribe(data => {
-      this.getApps();
+      //this.getApps();
+      this.applications.splice(this.applications.indexOf(app),1)
+      this.updateDatatable();
     })
+
+
   }
 
   async editApp(application: Application) {
@@ -92,9 +96,13 @@ export class ApplicationListComponent implements OnInit {
     this._applicationService.getApplications()
       .subscribe((results: Application[]) => {
         this.applications = results
-        this.dataSource = new MatTableDataSource(this.applications)
-        this.dataSource.sort = this.sort
-        this.dataSource.paginator = this.paginator
+        this.updateDatatable();
       });
+  }
+
+  private updateDatatable() {
+      this.dataSource = new MatTableDataSource(this.applications)
+      this.dataSource.sort = this.sort
+      this.dataSource.paginator = this.paginator
   }
 }

@@ -1,14 +1,14 @@
 <p>
   <mat-toolbar color="primary">
-    <button id="toolbar-button" mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon" aria-label="Menu icon-button">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon" aria-label="Menu icon-button">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button id="signout-button" mat-menu-item [routerLink]="'/home'" aria-label="button signOut" (click)="onSignOut()">
+      <button mat-menu-item [routerLink]="'/home'" aria-label="button signOut" (click)="onSignOut()">
         <mat-icon>weekend</mat-icon>
         <span>Sign Out</span>
       </button>
-      <button id="toolbar-userlist-button" mat-menu-item [routerLink]="'/admin/admin-panel'" arial-label="button navigate admin panel ">
+      <button mat-menu-item [routerLink]="'/admin/admin-panel'" arial-label="button navigate admin panel ">
         <mat-icon>list_alt</mat-icon>
         <span>Users List</span>
       </button>
@@ -20,8 +20,12 @@
     <span>Auth Server</span>
     <app-ad-banner style="margin-left: 30%;"></app-ad-banner>
     <span class="flexExpand"></span>
-    <button mat-icon-button aria-label="user detail button" [routerLink]="'/user/user-details'">
-      <mat-icon>person_outline</mat-icon>
-    </button>
+    <ng-container *ngIf="token">
+        <span *ngIf="userhttp$ | async as user">{{ user.username }}</span>
+      <button mat-icon-button aria-label="user detail button" [routerLink]="'/user/user-details'">
+        <mat-icon>person_outline</mat-icon>
+      </button>
+    </ng-container>
+    
   </mat-toolbar>
 </p>

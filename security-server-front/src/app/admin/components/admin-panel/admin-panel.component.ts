@@ -18,7 +18,7 @@ export class AdminPanelComponent implements OnInit {
   //users$! : Observable<MatTableDataSource<User>>; 
   displayedColumns: string[] = ['id', 'username', 'mail', 'avatar','action'];
   dataSource!: MatTableDataSource<User>;
-
+  users!: User[]
   constructor(private _liveAnnouncer: LiveAnnouncer, private _userService: UserService,public dialog: MatDialog) {}
  
   @ViewChild(MatSort) sort!: MatSort;
@@ -30,10 +30,9 @@ export class AdminPanelComponent implements OnInit {
   }
 
   private getUsers() {
-    this._userService.getUsers().subscribe(users => {
-      this.dataSource = new MatTableDataSource(users);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+    this._userService.getUsers().subscribe((users: User[]) => {
+      this.users = users;
+      this.updateDatatable();
     });
   }
 
@@ -53,12 +52,13 @@ export class AdminPanelComponent implements OnInit {
       });  
   }
 
-  async deleteUser(userId: number) {
-    await firstValueFrom(this._userService.deleteUser(userId));
-
-    this.getUsers();
+  async deleteUser(user: User) {
+    await firstValueFrom(this._userService.deleteUser(user.id!));
+    this.users.splice(this.users.indexOf(user),1)
+    this.updateDatatable();
+  
   }
-
+  
   async editUser(user: User) {
     const userDetail = await firstValueFrom(this._userService.getUserDetails(user.id!.toString()));
     
@@ -69,8 +69,11 @@ export class AdminPanelComponent implements OnInit {
     dialogRef.afterClosed().subscribe(data => {
       this.getUsers();
     });
-
-    // const test = this._userService.getUsers().pipe(map(users => users.find(u => u.id === user.id)));
   }
 
+  private updateDatatable() {
+      this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+  }
 }
