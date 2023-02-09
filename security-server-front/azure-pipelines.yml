@@ -5,7 +5,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: dir home/vsts/work/1/s
+- script: dir 
 - task: NodeTool@0
   inputs:
     versionSpec: '18.x'
