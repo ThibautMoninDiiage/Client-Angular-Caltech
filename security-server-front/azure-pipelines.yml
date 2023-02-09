@@ -25,6 +25,9 @@ steps:
   displayName: Publish pipeline artifact
 # - task: QodanaScan@2022
 #   displayName: Qodana
+
+- script: dir /home/vsts/work/1/s
+
 - task: PowerShell@2
   inputs:
     filePath: './node_modules/cypress/bin/cypress run'
