@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Application } from 'src/app/models/application.interface';
-import { ApplicationService } from 'src/app/services/application.service';
+import { ApplicationService } from 'src/app/services/application/application.service';
 import { firstValueFrom } from 'rxjs';
 
 @Component({

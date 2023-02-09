@@ -2,9 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
-import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from '../../../models/application.interface';
-
+import { ApplicationService } from 'src/app/services/application/application.service';
 
 @Component({
   selector: 'dialog-add-application',

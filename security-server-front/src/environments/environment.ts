@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://dev-api-url.com'
+  apiBaseUrl: 'https://preprodfuncappgroupedeuxb2.azurewebsites.net/api'
 }
