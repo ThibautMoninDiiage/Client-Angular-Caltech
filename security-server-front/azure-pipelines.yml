@@ -26,7 +26,7 @@ steps:
 # - task: QodanaScan@2022
 #   displayName: Qodana
 
-- script: dir /home/vsts/work/1/s
+- script: cd security-server-front
 
 - task: PowerShell@2
   inputs:
