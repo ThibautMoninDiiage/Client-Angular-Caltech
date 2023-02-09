@@ -8,13 +8,13 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Enter a firstname</mat-label>
-      <input formcontrolname="firstname" matInput #input placeholder="Ex. Diego" [formControl]="userForm.controls.firstname" required aria-label="input firstname">
+      <input id="firstname" formcontrolname="firstname" matInput #input placeholder="Ex. Diego" [formControl]="userForm.controls.firstname" required aria-label="input firstname">
       <mat-error *ngIf="userForm.controls.firstname.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="fill">
       <mat-label>Enter a lastname</mat-label>
-      <input formcontrolname="lastname" matInput #input placeholder="Ex. Delfuego" [formControl]="userForm.controls.lastname" required aria-label="input lastname">
+      <input id="lastname" formcontrolname="lastname" matInput #input placeholder="Ex. Delfuego" [formControl]="userForm.controls.lastname" required aria-label="input lastname">
       <mat-error *ngIf="userForm.controls.lastname.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
@@ -24,14 +24,14 @@
 
     <mat-form-field hintLabel="Min 3 - Max 15 char" appearance="fill">
       <mat-label>Enter a username</mat-label>
-      <input formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Dougy" [formControl]="userForm.controls.username" required aria-label="input username">
+      <input id="username" formcontrolname="username" matInput #input maxlength="15" placeholder="Ex. Dougy" [formControl]="userForm.controls.username" required aria-label="input username">
       <mat-hint align="end">{{input.value.length}}/15</mat-hint>
       <mat-error *ngIf="userForm.controls.username.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Enter your email</mat-label>
-      <input formcontrolname="email" matInput placeholder="diego@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
+      <input id="email" formcontrolname="email" matInput placeholder="diego@example.com" [formControl]="userForm.controls.email" required aria-label="input email">
       <mat-error *ngIf="userForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
   </div>
@@ -39,7 +39,7 @@
   <div class="row">
     <mat-form-field hintLabel="Use an URL" appearance="fill">
       <mat-label>Link to the avatar</mat-label>
-      <input formcontrolname="avatar" matInput #input  placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg" [formControl]="userForm.controls.avatar" required aria-label="input avatar">
+      <input id="avatar" formcontrolname="avatar" matInput #input  placeholder="https://material.angular.io/assets/img/examples/shiba1.jpg" [formControl]="userForm.controls.avatar" required aria-label="input avatar">
       <mat-error *ngIf="userForm.controls.avatar.invalid">{{getErrorMessage()}}</mat-error>
       <mat-error *ngIf="userForm.controls.avatar.hasError('pattern')">
         Url Pattern Invalid
@@ -48,7 +48,7 @@
 
     <mat-form-field *ngIf="create" hintLabel="Min 5 characters" appearance="fill">
       <mat-label>Enter a password</mat-label>
-      <input matInput formcontrolname="password" [type]="hide ? 'password' : 'text'" [formControl]="userForm.controls.password" required aria-label="input password">
+      <input id="password" matInput formcontrolname="password" [type]="hide ? 'password' : 'text'" [formControl]="userForm.controls.password" required aria-label="input password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -58,25 +58,25 @@
   <div class="row">
     <mat-form-field *ngIf="create" appearance="fill">
       <mat-label>User role</mat-label>
-      <mat-select formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role" required>
+      <mat-select id="role" formcontrolname="role" [formControl]="userForm.controls.role" aria-label="input role" required>
         <ng-container *ngIf="roles$ | async as roles; else loading">
-          <mat-option *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</mat-option>
+          <mat-option id="role-option" *ngFor="let role of roles" value="{{role.name}}">{{role.name}}</mat-option>
         </ng-container>
       </mat-select>
     </mat-form-field>
     <mat-form-field *ngIf="create" appearance="fill">
       <mat-label>Select an app</mat-label>
-      <mat-select formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application" required>
+      <mat-select id="application" formcontrolname="application" [formControl]="userForm.controls.application" aria-label="input application" required>
         <ng-container *ngIf="apps$ | async as apps; else loading">
-          <mat-option *ngFor="let app of apps" value="{{app.id}}">{{app.name}}</mat-option>
+          <mat-option id="application-option" *ngFor="let app of apps" value="{{app.id}}">{{app.name}}</mat-option>
         </ng-container>
       </mat-select>
     </mat-form-field>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-raised-button  (click)="onCancel()" aria-label="button close dialog">Cancel</button>
-  <button mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">{{labelButton}}</button>
+  <button id="cancel-button" mat-button mat-raised-button  (click)="onCancel()" aria-label="button close dialog">Cancel</button>
+  <button id="submit-button" mat-button mat-raised-button color="primary"  (click)="onSubmit()"  cdkFocusInitial aria-label="button create user">{{labelButton}}</button>
 </mat-dialog-actions>
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
