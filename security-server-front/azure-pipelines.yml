@@ -23,8 +23,9 @@ steps:
     artifact: 'dist'
     publishLocation: 'pipeline'
   displayName: Publish pipeline artifact
-# - task: QodanaScan@2022
-#   displayName: Qodana
+
+- task: QodanaScan@2022
+  displayName: Qodana
 
 - script: |
     cd security-server-front
