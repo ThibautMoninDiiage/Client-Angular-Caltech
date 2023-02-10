@@ -5,7 +5,7 @@ import Constants from '../../utils/constants';
 import { map, shareReplay } from 'rxjs';
 import { UserDTO } from '../../models/userDTO.model';
 import { Authentication } from 'src/app/models/authentication.interface';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +38,9 @@ export class AuthenticationService {
   getUserToken(codeGrant: string) {
     return this._http.post<UserDTO>(`${Constants.baseUrl}/authenticateGrant`, { codeGrant: codeGrant }).pipe(
       map(res => {
-        window.location.href = res.urlRedirect
         this.clearToken()
         this.setToken(res.token)
+        window.location.href = res.urlRedirect+"?token="+res.token
       }), shareReplay()
     )
   }
